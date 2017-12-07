@@ -10,4 +10,4 @@ define("DB_USER", "root");
 define("DB_PASS", "");
 define('ROOT', dirname(dirname(__FILE__) ) );
 //Thu muc tuyet doi truoc cua config; c:/wamp/www/lab/
-define("BASE_URL", "http://".$_SERVER['SERVER_NAME']."/homnaynghegi/");//dia chi website
+define("BASE_URL", "http://".$_SERVER['SERVER_NAME']."/Website/");//dia chi website

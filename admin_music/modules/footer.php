@@ -1,0 +1,1 @@
+<div class="footer" style="line-height:50px;text-align:center;font-size:25px;color:#CEF6F5; background: url(background/main.png);">ĐỒ ÁN CHUYÊN NGÀNH WEBSITE NGHE NHẠC</div>

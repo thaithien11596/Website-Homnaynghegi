@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="../css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/bootstrap.css">
   <link rel="stylesheet" href="../css/style.css?v=1.0" >
-  
 </head>
 
 <body>
@@ -26,7 +25,14 @@
         <div class="collapse navbar-collapse" id="menutop">
           <ul class="nav navbar-nav menutop1 ">
             <li class="active"><a href="../index.php">Trang chủ</a></li>
-            <li><a href="#">Bảng xếp hạng</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bảng xếp hạng<b class="caret"></b></a>
+                <ul class="dropdown-menu dropdownmenu">
+                  <li class="disabled"><a href="bxhVN.php">Việt Nam</a></li>
+                  <li class="disabled"><a href="bxhUSUK.php">Âu Mỹ</a></li>
+                </ul>
+
+              </li>
             <form class="navbar-form navbar-left formsearch1" method="post" action="search.php">
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Search">
@@ -50,25 +56,25 @@
         <div class="container container2">
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav menutop2">
-              <li><a href="#" >Hôm nay nghe gì ?</a></li>
+              <li><a href="../index.php" >Hôm nay nghe gì ?</a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bài hát<b class="caret"></b></a>
                 <ul class="dropdown-menu dropdownmenu">
-                  <li><a>Việt Nam</a></li>
-                  <li><a href="#">Nhạc trẻ</a></li>
-                  <li><a href="#">Trữ tình</a></li>
+                  <li><a href="menu_VN.php">Việt Nam</a></li>
+                  <li><a href="menu_USUK.php">Âu Mỹ</a></li>
+                  <li class="disabled"><a href="#">EDM</a></li>
                  <!--  <li class="divider"></li> -->
-                  <li><a href="#">Remix</a></li>
+                  <li class="disabled"><a href="#">Remix</a></li>
                  <!--  <li class="divider"></li> -->
-                  <li><a href="#">EDM</a></li>
+                  <li class="disabled"><a href="#">Trữ tình</a></li>
                 </ul>
 
               </li>
-              <li><a href="#">Album</a></li>
+              <li class="disabled"><a href="include/album.php">Album</a></li>
               <li class="disabled"><a href="#">Video</a></li>
-              <li><a href="#">Ca sĩ</a></li>
-              <li><a href="#">Top 100</a></li>
-              <li><a href="#">Nghệ sĩ</a></li>
+              <li class="disabled"><a href="#">Ca sĩ</a></li>
+              <li class="disabled"><a href="#">Top 100</a></li>
+              <li class="disabled"><a href="#">Nghệ sĩ</a></li>
               <li class="upload disabled"><a href="#">
                   <span class="glyphicon glyphicon-cloud-upload iconupload ">Upload</span>
                 </a></li>

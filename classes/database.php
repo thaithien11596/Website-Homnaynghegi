@@ -1,6 +1,3 @@
 <?php 
-	require('../connection/connect.php');
-
-	
-	
+	require('../connection/connect.php');	
  ?>

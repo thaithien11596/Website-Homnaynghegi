@@ -14,70 +14,96 @@
 
 <body>
 		<?php 
+			session_start();
+			if(isset($_SESSION['user'])){
+				
+			}
+			include ("config/config.php");
 
-			require('config/connect.php');
+			include (ROOT."/include/function.php");
+			spl_autoload_register("loadClass");
+
+			$music=new Music();
+			$data=$music->indexVNMusic();
+			$data1=$music->indexbxhVN();
+			$data2=$music->indexRandMusic();
+			$data3=$music->indexbshUSUK();
+			//require('config/connect.php');
 			// require('classes/process_bxhal.php');
-				$sql = "SELECT
-						baihat.idBaihat,
-						chitietbaihat.idChitietbaihat,
-						chitietbaihat.imageBaihat,
-						chitietbaihat.LuotngheBaihat,
-						casi.idCasi,
-						casi.HotenCasi,
-						chitietbaihat.LinkBaihat,
-						baihat.TenBaihat
-						FROM
-						baihat
-						INNER JOIN chitietbaihat ON chitietbaihat.idBaihat = baihat.idBaihat
-						INNER JOIN casi ON chitietbaihat.idCasi = casi.idCasi
-						ORDER BY
-						chitietbaihat.LuotngheBaihat DESC
-						LIMIT 8 ";
-					$sql1 = "SELECT
-							baihat.TenBaihat,
-							baihat.idBaihat,
-							chitietbaihat.idChitietbaihat,
-							chitietbaihat.imageBaihat,
-							chitietbaihat.LuottaiBaihat
-							FROM
-							baihat
-							INNER JOIN chitietbaihat ON chitietbaihat.idBaihat = baihat.idBaihat
-							ORDER BY
-							chitietbaihat.LuottaiBaihat DESC
-							LIMIT 7
-							";
-					$sql2 = "SELECT
-							baihat.idBaihat,
-							baihat.TenBaihat,
-							chitietbaihat.idChitietbaihat,
-							casi.idCasi,
-							casi.HotenCasi,
-							chitietbaihat.imageBaihat,
-							chitietbaihat.NgaydangBaihat,
-							chitietbaihat.LuotngheBaihat,
-							chitietbaihat.LuottaiBaihat
-							FROM
-							casi
-							INNER JOIN chitietbaihat ON chitietbaihat.idCasi = casi.idCasi
-							INNER JOIN baihat ON chitietbaihat.idBaihat = baihat.idBaihat
-							ORDER BY RAND()
-							LIMIT 8";
-					$sql3 = "SELECT
-							chitietalbum.LuotngheAlbum,
-							album.idAlbum,
-							album.TenAlbum,
-							chitietalbum.idchitietAlbum,
-							chitietalbum.NgaydangAlbum
-							FROM
-							album
-							INNER JOIN chitietalbum ON chitietalbum.idAlbum = album.idAlbum
-							ORDER BY
-							chitietalbum.LuotngheAlbum DESC
-							LIMIT 7";
-				$database3 = mysqli_query($connect,$sql3);	
-				$database = mysqli_query($connect, $sql);
-				$database1 = mysqli_query($connect, $sql1);
-				$database2 = mysqli_query($connect, $sql2);
+				// $sql = "SELECT
+				// 		baihat.idBaihat,
+				// 		chitietbaihat.idChitietbaihat,
+				// 		chitietbaihat.imageBaihat,
+				// 		chitietbaihat.LuotngheBaihat,
+				// 		casi.idCasi,
+				// 		casi.HotenCasi,
+				// 		chitietbaihat.LinkBaihat,
+				// 		baihat.TenBaihat,
+				// 		quocgia.idQuocgia,
+				// 		quocgia.TenQuocgia
+				// 		FROM
+				// 		baihat
+				// 		INNER JOIN chitietbaihat ON chitietbaihat.idBaihat = baihat.idBaihat
+				// 		INNER JOIN casi ON chitietbaihat.idCasi = casi.idCasi
+				// 		INNER JOIN quocgia ON baihat.idQuocgia = quocgia.idQuocgia AND casi.idQuocgia = quocgia.idQuocgia
+				// 		ORDER BY
+				// 		chitietbaihat.LuotngheBaihat DESC 
+				// 		LIMIT 8";
+
+
+					// $sql1 = "SELECT
+					// 		baihat.TenBaihat,
+					// 		baihat.idBaihat,
+					// 		chitietbaihat.idChitietbaihat,
+					// 		chitietbaihat.imageBaihat,
+					// 		chitietbaihat.LuottaiBaihat
+					// 		FROM
+					// 		baihat
+					// 		INNER JOIN chitietbaihat ON chitietbaihat.idBaihat = baihat.idBaihat
+					// 		WHERE
+					// 		baihat.idQuocgia = 1
+					// 		ORDER BY
+					// 		chitietbaihat.LuottaiBaihat DESC
+					// 		LIMIT 7
+					// 		";
+					// $sql2 = "SELECT
+					// 		baihat.idBaihat,
+					// 		baihat.TenBaihat,
+					// 		chitietbaihat.idChitietbaihat,
+					// 		casi.idCasi,
+					// 		casi.HotenCasi,
+					// 		chitietbaihat.imageBaihat,
+					// 		chitietbaihat.NgaydangBaihat,
+					// 		chitietbaihat.LuotngheBaihat,
+					// 		chitietbaihat.LuottaiBaihat
+					// 		FROM
+					// 		casi
+					// 		INNER JOIN chitietbaihat ON chitietbaihat.idCasi = casi.idCasi
+					// 		INNER JOIN baihat ON chitietbaihat.idBaihat = baihat.idBaihat
+					// 		ORDER BY RAND()
+					// 		LIMIT 8";
+				// 	$sql3 = "SELECT
+				// 			baihat.idBaihat,
+				// 			baihat.TenBaihat,
+				// 			chitietbaihat.imageBaihat,
+				// 			chitietbaihat.LuottaiBaihat,
+				// 			casi.HotenCasi,
+				// 			casi.idCasi,
+				// 			quocgia.idQuocgia,
+				// 			quocgia.TenQuocgia,
+				// 			chitietbaihat.idChitietbaihat
+				// 			FROM
+				// 			chitietbaihat
+				// 			INNER JOIN baihat ON chitietbaihat.idBaihat = baihat.idBaihat
+				// 			INNER JOIN casi ON chitietbaihat.idCasi = casi.idCasi
+				// 			INNER JOIN quocgia ON baihat.idQuocgia = quocgia.idQuocgia AND casi.idQuocgia = quocgia.idQuocgia
+				// 			WHERE
+				// 			quocgia.idQuocgia = 2
+				// 			LIMIT 7";
+				// $database3 = mysqli_query($connect,$sql3);	
+				// //$database = mysqli_query($connect, $sql);
+				// $database1 = mysqli_query($connect, $sql1);
+				// $database2 = mysqli_query($connect, $sql2);
 				
 				
 
@@ -95,7 +121,14 @@
 		    <div class="collapse navbar-collapse" id="menutop">
 		      <ul class="nav navbar-nav menutop1 ">
 		        <li class="active"><a href="index.php">Trang chủ</a></li>
-		        <li><a href="include/bxh.php">Bảng xếp hạng</a></li>
+		        <li class="dropdown">
+			          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bảng xếp hạng<b class="caret"></b></a>
+			          <ul class="dropdown-menu dropdownmenu">
+			            <li class="disabled"><a href="include/bxhVN.php">Việt Nam</a></li>
+			            <li class="disabled"><a href="include/bxhUSUK.php">Âu Mỹ</a></li>
+			          </ul>
+
+		        	</li>
 		        <form class="navbar-form navbar-left formsearch1" method="post" action="search.php">
 		      <div class="input-group">
 		        <input type="text" class="form-control" placeholder="Search">
@@ -108,8 +141,24 @@
 		    </form>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right dangnhap" >
-		        <li class="li1"><a href="include/signin-form.php"><span class="glyphicon glyphicon-user"></span> Đăng nhập</a></li>
+		      	<?php 
+		      		if(isset($_SESSION['user'])){?>
+						 <li class="dropdown">
+			          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span><?= $_SESSION['user'] ?><b class="caret"></b></a>
+			          <ul class="dropdown-menu dropdownmenu">
+			            <li><a href="#">Thông tin</a></li>
+			            <li><a href="#">Playlist</a></li>
+			            <li><a href="include/process_signout.php"><span class="glyphicon glyphicon-off" style="color:#bbb2b2"></span> Đăng xuất</a></li>
+			          </ul>
+
+		        	</li>
+				<?php
+		      		}else {?>
+		      			<li class="li1"><a href="include/signin-form.php"><span class="glyphicon glyphicon-user"></span> Đăng nhập</a></li>
 		        <li class="li2"><a href="include/signup-form.php"><span class="glyphicon glyphicon-log-in"></span> Đăng kí</a></li>
+		      	<?php	}
+		      	 ?>
+		        
 		      </ul>
 		    </div>
 		  </div><!-- hết container 1 -->
@@ -119,25 +168,25 @@
 		    <div class="container container2">
 			    <div class="collapse navbar-collapse">
 			      <ul class="nav navbar-nav menutop2">
-			        <li><a href="#" >Hôm nay nghe gì ?</a></li>
+			        <li><a href="#id4" >Hôm nay nghe gì ?</a></li>
 			        <li class="dropdown">
 			          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bài hát<b class="caret"></b></a>
 			          <ul class="dropdown-menu dropdownmenu">
-			            <li><a>Việt Nam</a></li>
-			            <li><a href="#">Nhạc trẻ</a></li>
-			            <li class="disabled"><a href="#">Trữ tình</a></li>
+			            <li><a href="include/menu_VN.php">Việt Nam</a></li>
+			            <li><a href="include/menu_USUK.php">Âu Mỹ</a></li>
+			            <li class="disabled"><a href="#">EDM</a></li>
 			           <!--  <li class="divider"></li> -->
 			            <li class="disabled"><a href="#">Remix</a></li>
 			           <!--  <li class="divider"></li> -->
-			            <li class="disabled"><a href="#">EDM</a></li>
+			            <li class="disabled"><a href="#">Trữ Tình</a></li>
 			          </ul>
 
 		        	</li>
-			        <li><a href="include/album.php">Album</a></li>
+			        <li class="disabled"><a href="include/album.php">Album</a></li>
 			        <li class="disabled"><a href="#">Video</a></li>
-			        <li><a href="#">Ca sĩ</a></li>
-			        <li><a href="#">Top 100</a></li>
-			        <li><a href="#">Nghệ sĩ</a></li>
+			        <li class="disabled"><a href="#">Ca sĩ</a></li>
+			        <li class="disabled"><a href="#">Top 100</a></li>
+			        <li class="disabled"><a href="#">Nghệ sĩ</a></li>
 			        <li class="upload disabled"><a href="#">
 		          		<span class="glyphicon glyphicon-cloud-upload iconupload ">Upload</span>
 		          	</a></li>
@@ -161,13 +210,13 @@
 												<a href="#"><img class="d-block w-100" src="img/slide4.jpg" alt="First slide"></a>
 											</div>
 											<div class="item">
-												<a href="#"><img class="d-block w-100" src="img/slide2.jpg" alt="First slide" ></a>
+												<a href="#"><img class="d-block w-100" src="img/slide2.jpg" alt="First slide"></a>
 											</div>
 											<div class="item">
-												<a href="#"><img class="d-block w-100" src="img/slide3.jpg" alt="First slide"></a>
+												<a href="#"><img class="d-block w-100" src="img/slide3.jpg" alt="Second slide"></a>
 											</div>
 											<div class="item">
-											    <a href="#"><img class="d-block w-100" src="img/slide1.jpg" alt="First slide"></a>
+												<a href="#"><img class="d-block w-100" src="img/slide1.jpg" alt="Third slide"></a>
 											</div>
 										</div>
 										<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
@@ -189,23 +238,23 @@
 		<div class="container container4">
 			<div class="noidungbh">
 				<div class="baihatnb">
-					<a href="include/menu-sing1.php" id="#1">Nghe nhiều trong tuần<span class="glyphicon glyphicon-menu-right menuright"></span></a>
+					<a href="include/menu_VN.php" id="#1">Nhạc Việt nghe nhiều trong tuần<span class="glyphicon glyphicon-menu-right menuright"></span></a>
 				</div> <!-- Hết bài hát nổi bật-->
-				<p style="color: black" class="pbaihat">Tuyển tập các ca khúc được yêu thích nhất.</p>
+				<p style="color: black" class="pbaihat">Tuyển tập các ca khúc Việt được yêu thích nhất.</p>
 					<div class="row row1">
 
 						<div class="col-sm-8 colbhnoibat">
 								
 								<?php 
 											
-											
-											while ($result = mysqli_fetch_assoc($database)){
+											foreach ($data as $result) {
+											//while ($result = mysqli_fetch_assoc($database)){
 											// echo '<pre>';
 											// print_r($result);
 											// echo $dem = count_array($result);?>
 			
 													<div class="col-sm-3 col-xs-3 noidungnoibat">
-													<a href="include/sing-form.php?id=<?= $result['idChitietbaihat'] ?>">
+													<a href="include/sing-form.php?idbh=<?= $result['idChitietbaihat'] ?>">
 														<div class="card">
 															<img class="card-img-top" src="img/<?= $result['imageBaihat'] ?>" alt="Card image cap" style="width: 100%">
 															<span class="glyphicon glyphicon-play iconplay" ></span>
@@ -225,13 +274,14 @@
 						
 					</div> <!-- Hết col-sm-8 -->
 						<div class="col-sm-4  noidungtrai2">
-							<p>Bảng xếp hạng bài hát</p>
+							<p>Bảng xếp hạng nhạc Việt</p>
 														
 								<div class="list-group lstbxh">
 									<?php 
+										foreach ($data1 as $result) {
 
-										while ($result1 = mysqli_fetch_assoc($database1)) { ?>
-										    <a href="include/sing-form.php?id=<?= $result1['idChitietbaihat'] ?>" class="list-group-item list-group-item-action lstbxh"><img src="img/<?= $result1['imageBaihat'] ?>" alt="" style="width: 40px"> <?= $result1['TenBaihat'] ?></a>
+										//while ($result1 = mysqli_fetch_assoc($database1)) { ?>
+										    <a href="include/sing-form.php?idbh=<?= $result['idChitietbaihat'] ?>" class="list-group-item list-group-item-action lstbxh"><img src="img/<?= $result['imageBaihat'] ?>" alt="" style="width: 40px"> <?= $result['TenBaihat'] ?></a>
 									<?php
 										}
 
@@ -246,22 +296,22 @@
 		
 			
 			<div class="baihatnb">
-					<a href="#">Hôm nay nghe gì?<span class="glyphicon glyphicon-menu-right menuright"></span></a>
+					<a href="/menu_ngaunhien.php" id= "id4">Hôm nay nghe gì?<span class="glyphicon glyphicon-menu-right menuright"></span></a>
 				</div>
 				<p style="color: black" class="pbaihat">Tuyển tập các ca khúc ngẫu nhiên hay nhất.</p>
 				<div class="row row2">
 					<div class="col-sm-8 colbhnghenhieu">
 						<?php 
-
-							while ($result2 = mysqli_fetch_assoc($database2)) {?>
+							foreach ($data2 as $result) {
+							//while ($result2 = mysqli_fetch_assoc($database2)) {?>
 							    <div class="col-sm-3 col-xs-3 noidungnoibat">
-								<a href="include/sing-form.php?id=<?= $result2['idChitietbaihat'] ?>">
+								<a href="include/sing-form.php?idbh=<?= $result['idChitietbaihat'] ?>">
 									<div class="card">
-										<img class="card-img-top" src="img/<?= $result2['imageBaihat'] ?>" alt="Card image cap" style="width: 100%">
+										<img class="card-img-top" src="img/<?= $result['imageBaihat'] ?>" alt="Card image cap" style="width: 100%">
 										<span class="glyphicon glyphicon-play iconplay" ></span>
 										<div class="fade1"></div>
 										<div class="card-block">
-											<h4 class="card-title"><?= $result2['HotenCasi'] ?></h4>
+											<h4 class="card-title"><?= $result['HotenCasi'] ?></h4>
 										</div>
 									</div>
 								</a>
@@ -274,11 +324,12 @@
 						
 					</div> <!-- Hết col-sm-8 nghenhieutrongtuan-->
 					<div class="col-sm-4  noidungtrai3">
-						<p>Bảng xếp hạng Album</p>
+						<p>Bảng xếp hạng nhạc Âu Mỹ</p>
 						<?php 
-							while ($result3 = mysqli_fetch_assoc($database3)) { ?>
+						foreach ($data3 as $result) {
+							//while ($result3 = mysqli_fetch_assoc($database3)) { ?>
 							     <div class="list-group lstbxhal">
-					    <a href="#" class="list-group-item list-group-item-action lstbxhal"><img src="img/nd12.jpg" alt="" style="width: 40px"> <?= $result3['TenAlbum'] ?></a>
+					    <a href="include/sing-form.php?idbh=<?= $result['idChitietbaihat'] ?>" class="list-group-item list-group-item-action lstbxhal"><img src="img/<?= $result['imageBaihat'] ?>" alt="" style="width: 40px"> <?= $result['TenBaihat'] ?></a>
 						</div>
 						<?php
 							}
@@ -505,7 +556,7 @@
 					<div class="col-sm-6">
 						<button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#demo1">Hỗ trợ</button>
 						
-							<div id="demo1" class="collapse colp">
+							<div id="demo1" class="collapse colp" style="padding-top: 5px">
 							  <p><span class="glyphicon glyphicon-map-marker"></span> Việt Nam, HCM City</p>
 						      <p><span class="glyphicon glyphicon-phone"></span> 0906929906</p>
 						      <p><span class="glyphicon glyphicon-envelope"></span> thaithien11596@gmail.com</p>
@@ -516,13 +567,14 @@
 					
 					  
 				</div><!-- Hết container5-->
+				 <div class="footer">
+				<div class="container container6">
+					<p>Copyright &copy;2017 by Homnaynghegi.tk</p>
+					<p class="pleft">Designed by BanhMi3T</p>
+				</div>
+			</div><!-- Hết Footer -->
 	</div> <!-- Hết jumbotron-->
-	<div class="footer">
-		<div class="container container6">
-			<p>Copyright &copy;2017 by Homnaynghegi.tk</p>
-			<p class="pleft">Designed by BanhMi3T</p>
-		</div>
-	</div><!-- Hết Footer-->
+	
 	
 	
 					

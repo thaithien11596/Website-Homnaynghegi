@@ -1,5 +1,10 @@
  <?php 
+     session_start();
         require('header1.php');
+        require('process_login.php');
+     
+
+
      ?>
  <!DOCTYPE html>
  <html>
@@ -15,6 +20,7 @@
     
  </head>
  <body>
+
   <style>
     
       .container.container3 a{
@@ -27,36 +33,23 @@
   </style>
    
     <div class="container container3">
-      <form class="form-horizontal">
+      <form class="form-horizontal" action="process_login.php" method="post">
         <fieldset>
-
-        <!-- Form Name -->
-        <a href="#"><legend>Đăng nhập</legend></a>
-
-        <!-- Text input-->
+        <legend>Đăng nhập</legend>
         <div class="form-group">
-          <label class="col-md-4 control-label" for="name">Tên đăng nhập.</label>  
+          <label class="col-md-4 control-label" >Tên đăng nhập.</label>  
           <div class="col-md-4">
-          <input id="name" name="name" type="text" placeholder="Vui lòng nhập tên đăng nhập" class="form-control input-md" required="">
+          <input id="name" name="username" type="text" placeholder="Vui lòng nhập tên đăng nhập" class="form-control input-md" >
             
           </div>
         </div>
-
-        <!-- Text input-->
-        
         <div class="form-group">
-          <label class="col-md-4 control-label" for="password">Mật khẩu.</label>
+          <label class="col-md-4 control-label" >Mật khẩu.</label>
           <div class="col-md-4">
-            <input id="password" name="password" type="password" placeholder="Nhập mật khẩu" class="form-control input-md" required="">
+            <input id="password" name="password" type="password" placeholder="Nhập mật khẩu" class="form-control input-md" >
             
           </div>
         </div>
-
-        <!-- Text input-->
-        
-       
-
-        <!-- Button -->
         <div class="form-group">
           <label class="col-md-4 control-label"></label>
           <div class="col-md-4">
@@ -66,7 +59,14 @@
           </div>
 
         </div>
+        <span><?php   
+       
+         if(isset($_SESSION["error"]))
+                    {
+                      echo $_SESSION["error"];
 
+                    }
+                     ?> </span>
 
         </fieldset>
       </form>
