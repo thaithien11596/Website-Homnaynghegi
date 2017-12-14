@@ -4,20 +4,23 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Welcome to my webiste</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link href='https://fonts.googleapis.com/css?family=Crimson+Text' rel='stylesheet'>
+	<meta name="viewport" content="width=device-width; initial-scale=0.5; maximum-scale=0.5; minimum-scale=0.5; user-scalable=no; target-densityDpi=device-dpi" />
+
 	<link rel="stylesheet" href="css/bootstrap-theme.css">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/style.css" >
 	
 </head>
-
-<body>
+<style>
+	 @media(max-width: 768px){  .col-sm-4.noidungtrai1{
+        display: none;
+    }}
+</style>
+<body style=" font-family: 'Crimson+Text';font-size: 16px">
 		<?php 
 			session_start();
-			if(isset($_SESSION['user'])){
-				
-			}
 			include ("config/config.php");
 
 			include (ROOT."/include/function.php");
@@ -27,7 +30,9 @@
 			$data=$music->indexVNMusic();
 			$data1=$music->indexbxhVN();
 			$data2=$music->indexRandMusic();
-			$data3=$music->indexbshUSUK();
+			$data3=$music->indexbxhUSUK();
+			$data4=$music->indexbhNew();
+			
 			//require('config/connect.php');
 			// require('classes/process_bxhal.php');
 				// $sql = "SELECT
@@ -116,7 +121,7 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>                        
 		      </button>
-		      <a class="navbar-brand" href="index.php">HomNgayNgheGi.tk</a>
+		      <a class="navbar-brand" href="index.php">HomNayNgheGi.tk</a>
 		    </div>
 		    <div class="collapse navbar-collapse" id="menutop">
 		      <ul class="nav navbar-nav menutop1 ">
@@ -124,8 +129,8 @@
 		        <li class="dropdown">
 			          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bảng xếp hạng<b class="caret"></b></a>
 			          <ul class="dropdown-menu dropdownmenu">
-			            <li class="disabled"><a href="include/bxhVN.php">Việt Nam</a></li>
-			            <li class="disabled"><a href="include/bxhUSUK.php">Âu Mỹ</a></li>
+			            <li><a href="include/bxhVN.php">Việt Nam</a></li>
+			            <li><a href="include/bxhUSUK.php">Âu Mỹ</a></li>
 			          </ul>
 
 		        	</li>
@@ -172,8 +177,8 @@
 			        <li class="dropdown">
 			          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bài hát<b class="caret"></b></a>
 			          <ul class="dropdown-menu dropdownmenu">
-			            <li><a href="include/menu_VN.php">Việt Nam</a></li>
-			            <li><a href="include/menu_USUK.php">Âu Mỹ</a></li>
+			            <li><a href="include/menu_VN.php?trangVN=1">Việt Nam</a></li>
+			            <li><a href="include/menu_USUK.php?trangUSUK=1">Âu Mỹ</a></li>
 			            <li class="disabled"><a href="#">EDM</a></li>
 			           <!--  <li class="divider"></li> -->
 			            <li class="disabled"><a href="#">Remix</a></li>
@@ -182,9 +187,9 @@
 			          </ul>
 
 		        	</li>
-			        <li class="disabled"><a href="include/album.php">Album</a></li>
+			        <li class="disabled"><a href="#">Album</a></li>
 			        <li class="disabled"><a href="#">Video</a></li>
-			        <li class="disabled"><a href="#">Ca sĩ</a></li>
+			        <li><a href="include/singer_form?trangsingerVN=1">Ca sĩ</a></li>
 			        <li class="disabled"><a href="#">Top 100</a></li>
 			        <li class="disabled"><a href="#">Nghệ sĩ</a></li>
 			        <li class="upload disabled"><a href="#">
@@ -207,17 +212,17 @@
 										</ol> -->
 										<div class="carousel-inner slideanh" role="listbox">
 											<div class="item active">
-												<a href="#"><img class="d-block w-100" src="img/slide4.jpg" alt="First slide"></a>
+												<a href="include/sing-form.php?idBh=7&&idQg=1"><img class="d-block w-100" src="img/slide4.jpg" alt="First slide"></a>
 											</div>
 											<div class="item">
-												<a href="#"><img class="d-block w-100" src="img/slide2.jpg" alt="First slide"></a>
+												<a href="include/sing-form.php?idBh=6&&idQg=1"><img class="d-block w-100" src="img/slide2.jpg" alt="First slide"></a>
 											</div>
 											<div class="item">
-												<a href="#"><img class="d-block w-100" src="img/slide3.jpg" alt="Second slide"></a>
+												<a href="include/sing-form.php?idBh=5&&idQg=1"><img class="d-block w-100" src="img/slide3.jpg" alt="Second slide"></a>
 											</div>
-											<div class="item">
+											<!-- <div class="item">
 												<a href="#"><img class="d-block w-100" src="img/slide1.jpg" alt="Third slide"></a>
-											</div>
+											</div> -->
 										</div>
 										<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
 											<span class="icon-prev" aria-hidden="true"></span>
@@ -230,7 +235,7 @@
 									</div>	
 				</div> <!-- Hết col -->
 				<div class="col-sm-4 noidungtrai1">
-					<a href="#"><img src="img/quangcao.jpg" alt="Image-quangcao" style="width: 100%"></a>
+					<a href="#"><img src="img/quangcao.jpg" alt="Image-quangcao" style="width: 100%;height: 100%"></a>
 				</div>
 			</div> <!-- Hết row -->
 		</div> <!-- Hết container3-->
@@ -238,9 +243,11 @@
 		<div class="container container4">
 			<div class="noidungbh">
 				<div class="baihatnb">
-					<a href="include/menu_VN.php" id="#1">Nhạc Việt nghe nhiều trong tuần<span class="glyphicon glyphicon-menu-right menuright"></span></a>
+					<a href="include/menu_VN.php?trangVN=1" id="#1">Nhạc Việt nghe nhiều trong tuần<span class="glyphicon glyphicon-menu-right menuright"></span></a>
+					<p style="color: #e6e6e6; font-size: 16px" class="pbaihat">Tuyển tập các ca khúc Việt được yêu thích nhất.</p>
+					
 				</div> <!-- Hết bài hát nổi bật-->
-				<p style="color: black" class="pbaihat">Tuyển tập các ca khúc Việt được yêu thích nhất.</p>
+				
 					<div class="row row1">
 
 						<div class="col-sm-8 colbhnoibat">
@@ -254,13 +261,13 @@
 											// echo $dem = count_array($result);?>
 			
 													<div class="col-sm-3 col-xs-3 noidungnoibat">
-													<a href="include/sing-form.php?idbh=<?= $result['idChitietbaihat'] ?>">
+													<a href="include/sing-form.php?idBh=<?= $result['idChitietbaihat'] ?>&&idQg=<?= $result['idQuocgia'] ?>">
 														<div class="card">
 															<img class="card-img-top" src="img/<?= $result['imageBaihat'] ?>" alt="Card image cap" style="width: 100%">
 															<span class="glyphicon glyphicon-play iconplay" ></span>
-															<div class="fade1">Lượt nghe:<?= $result['LuotngheBaihat'] ?></div>
+															<div class="fade1">Lượt nghe:<?= number_format($result['LuotngheBaihat']) ?></div>
 															<div class="card-block">
-																<h4 class="card-title"><a href="include/singer_form.php"><?= $result['HotenCasi'] ?></a></h4>
+																<h4 class="card-title"><a href="include/singer_form.php?trangsingerVN=1"><?= $result['HotenCasi'] ?></a></h4>
 															</div>
 														</div>
 													</a>
@@ -281,7 +288,7 @@
 										foreach ($data1 as $result) {
 
 										//while ($result1 = mysqli_fetch_assoc($database1)) { ?>
-										    <a href="include/sing-form.php?idbh=<?= $result['idChitietbaihat'] ?>" class="list-group-item list-group-item-action lstbxh"><img src="img/<?= $result['imageBaihat'] ?>" alt="" style="width: 40px"> <?= $result['TenBaihat'] ?></a>
+										    <a href="include/sing-form.php?idBh=<?= $result['idChitietbaihat'] ?>&&idQg=<?= $result['idQuocgia'] ?>" class="list-group-item list-group-item-action lstbxh"><img src="img/<?= $result['imageBaihat'] ?>" alt="" style="width: 40px"> <?= $result['TenBaihat'] ?></a>
 									<?php
 										}
 
@@ -296,20 +303,21 @@
 		
 			
 			<div class="baihatnb">
-					<a href="/menu_ngaunhien.php" id= "id4">Hôm nay nghe gì?<span class="glyphicon glyphicon-menu-right menuright"></span></a>
+					<a href="include/menu_VN.php?trangVN=1" id= "id4">Hôm nay nghe gì?<span class="glyphicon glyphicon-menu-right menuright"></span></a>
+					<p style="color: #e6e6e6;font-size: 16px" class="pbaihat">Tuyển tập các ca khúc ngẫu nhiên hay nhất.</p>
 				</div>
-				<p style="color: black" class="pbaihat">Tuyển tập các ca khúc ngẫu nhiên hay nhất.</p>
+				
 				<div class="row row2">
 					<div class="col-sm-8 colbhnghenhieu">
 						<?php 
 							foreach ($data2 as $result) {
 							//while ($result2 = mysqli_fetch_assoc($database2)) {?>
 							    <div class="col-sm-3 col-xs-3 noidungnoibat">
-								<a href="include/sing-form.php?idbh=<?= $result['idChitietbaihat'] ?>">
+								<a href="include/sing-form.php?idBh=<?= $result['idChitietbaihat'] ?>&&idQg=<?= $result['idQuocgia'] ?>">
 									<div class="card">
 										<img class="card-img-top" src="img/<?= $result['imageBaihat'] ?>" alt="Card image cap" style="width: 100%">
 										<span class="glyphicon glyphicon-play iconplay" ></span>
-										<div class="fade1"></div>
+										<div class="fade1">Lượt nghe:<?= number_format($result['LuotngheBaihat']) ?></div>
 										<div class="card-block">
 											<h4 class="card-title"><?= $result['HotenCasi'] ?></h4>
 										</div>
@@ -323,216 +331,57 @@
 							
 						
 					</div> <!-- Hết col-sm-8 nghenhieutrongtuan-->
-					<div class="col-sm-4  noidungtrai3">
-						<p>Bảng xếp hạng nhạc Âu Mỹ</p>
-						<?php 
-						foreach ($data3 as $result) {
-							//while ($result3 = mysqli_fetch_assoc($database3)) { ?>
-							     <div class="list-group lstbxhal">
-					    <a href="include/sing-form.php?idbh=<?= $result['idChitietbaihat'] ?>" class="list-group-item list-group-item-action lstbxhal"><img src="img/<?= $result['imageBaihat'] ?>" alt="" style="width: 40px"> <?= $result['TenBaihat'] ?></a>
-						</div>
-						<?php
-							}
+					<div class="col-sm-4  noidungtrai2">
+							<p>Bảng xếp hạng nhạc Âu Mỹ</p>
+														
+								<div class="list-group lstbxh">
+									<?php 
+										foreach ($data3 as $result) {
 
-						 ?>
+										//while ($result1 = mysqli_fetch_assoc($database1)) { ?>
+										    <a href="include/sing-form.php?idBh=<?= $result['idChitietbaihat'] ?>&&idQg=<?= $result['idQuocgia'] ?>" class="list-group-item list-group-item-action lstbxh"><img src="img/<?= $result['imageBaihat'] ?>" alt="" style="width: 40px"> <?= $result['TenBaihat'] ?></a>
+									<?php
+										}
+
+									 ?>
+								
+
+								</div>
+									
 						
 					</div>
 			</div>	<!-- Hêt row2 -->
 			
 			<div class="row row3">
-				<div class="col-sm-8">
+				<div class="col-sm-8" style="padding-right: 0px">
 					<div class="nhacvietmoi">
-						<a href="#">Nhạc Việt mới<span class="glyphicon glyphicon-menu-right menuright"></span>
-
+						<a href="include/menu_newMusic.php?trangnewVN=1">Nhạc Việt mới<span class="glyphicon glyphicon-menu-right menuright"></span>
+						<p style="color: #e6e6e6;font-size: 16px" class="pbaihat">Tuyển tập các ca khúc mới nhất.</p>
 						</a>
-						</div> <!-- Hết bài hát nổi bật-->
-						<p style="color: black" class="pbaihat">Tuyển tập các ca khúc mới nhất.</p>
-						<div class="col-sm-6 col-xs-6 col6nhacvietmoileft">
-							<div class="col-sm-3 col3nhacvietmoiright">
-								<a href="#">
-									<img class="card-img-top" src="img/nvm/nvm.jpg" alt="Card image cap" style="width: 100%">
-								</a>
-								
+					</div> <!-- Hết bài hát nổi bật-->
+						
+						<?php 
+							foreach ($data4 as $result) {?>
+							<div class="col-sm-6 col-xs-6 col6nhacvietmoileft ">
+								<div class="col-sm-3 col3nhacvietmoiright">
+									<a href="#">
+										<img class="card-img-top" src="img/<?= $result['imageBaihat'] ?>" alt="Card image cap" style="width: 100%">
+									</a>
+									
+								</div>
+								<div class="col-sm-9 col9nhacvietmoi">
+									<ul>
+										<li><a href="include/sing-form.php?idBh=<?= $result['idChitietbaihat'] ?>&&idQg=<?= $result['idQuocgia'] ?>"><?= $result['TenBaihat'] ?></a></li>
+										<li class="casi"><a href="#"><?= $result['HotenCasi'] ?></a></li>
+									</ul>
+									
+								</div>
+									
 							</div>
-							<div class="col-sm-9 col9nhacvietmoi">
-								<ul>
-									<li><a href="#">Thương</a></li>
-									<li class="casi"><a href="#">Quốc Thiên</a></li>
-								</ul>
-								
-							</div>
-								
-						</div>
-						<div class="col-sm-6 col-xs-6 col6nhacvietmoiright">
-							<div class="col-sm-3 col3nhacvietmoileft">
-								<a href="#">
-									<img class="card-img-top" src="img/nvm/nvm1.jpg" alt="Card image cap" style="width: 100%">
-								</a>
-								
-							</div>
-							<div class="col-sm-9 col9nhacvietmoi">
-								<ul>
-									<li><a href="#">Mặt trời của em</a></li>
-									<li class="casi"><a href="#">Phương Ly, Justa Tee</a></li>
-								</ul>
-								
-							</div>
-						</div>
-						<div class="col-sm-6 col-xs-6 col6nhacvietmoileft">
-							<div class="col-sm-3 col3nhacvietmoiright">
-								<a href="#">
-									<img class="card-img-top" src="img/nvm/nvm2.jpg" alt="Card image cap" style="width: 100%">
-								</a>
-								
-							</div>
-							<div class="col-sm-9 col9nhacvietmoi">
-								<ul>
-									<li><a href="#">Ta chia tay nhau thật rồi</a></li>
-									<li class="casi"><a href="#">Anh Khang</a></li>
-								</ul>
-								
-							</div>
-								
-						</div>
-						<div class="col-sm-6 col6nhacvietmoiright">
-							<div class="col-sm-3 col3nhacvietmoileft">
-								<a href="#">
-									<img class="card-img-top" src="img/nvm/nvm.png" alt="Card image cap" style="width: 100%">
-								</a>
-								
-							</div>
-							<div class="col-sm-9 col9nhacvietmoi">
-								<ul>
-									<li><a href="#">Có một ngày như thế</a></li>
-									<li class="casi"><a href="#">Thế Bảo</a></li>
-								</ul>
-								
-							</div>
-						</div>
-						<div class="col-sm-6 col6nhacvietmoileft">
-							<div class="col-sm-3 col3nhacvietmoiright">
-								<a href="#">
-									<img class="card-img-top" src="img/nvm/nvm3.jpg" alt="Card image cap" style="width: 100%">
-								</a>
-								
-							</div>
-							<div class="col-sm-9 col9nhacvietmoi">
-								<ul>
-									<li><a href="#">Tình yêu là đấy</a></li>
-									<li class="casi"><a href="#">Hồ Trung Dũng</a></li>
-								</ul>
-								
-							</div>
-								
-						</div>
-						<div class="col-sm-6 col6nhacvietmoiright">
-							<div class="col-sm-3 col3nhacvietmoileft">
-								<a href="#">
-									<img class="card-img-top" src="img/nvm/nvm4.jpg" alt="Card image cap" style="width: 100%">
-								</a>
-								
-							</div>
-							<div class="col-sm-9 col9nhacvietmoi">
-								<ul>
-									<li><a href="#">Đoạn cuối tình yêu</a></li>
-									<li class="casi"><a href="#">Dương Triệu Vũ</a></li>
-								</ul>
-								
-							</div>
-						</div>
-						<div class="col-sm-6 col6nhacvietmoileft">
-							<div class="col-sm-3 col3nhacvietmoiright">
-								<a href="#">
-									<img class="card-img-top" src="img/nvm/nvm5.jpg" alt="Card image cap" style="width: 100%">
-								</a>
-								
-							</div>
-							<div class="col-sm-9 col9nhacvietmoi">
-								<ul>
-									<li><a href="#">Sống xa anh chẳng dễ dàng</a></li>
-									<li class="casi"><a href="#">Bảo Anh</a></li>
-								</ul>
-								
-							</div>
-								
-						</div>
-						<div class="col-sm-6 col6nhacvietmoiright">
-							<div class="col-sm-3 col3nhacvietmoileft">
-								<a href="#">
-									<img class="card-img-top" src="img/nvm/nvm6.jpg" alt="Card image cap" style="width: 100%">
-								</a>
-								
-							</div>
-							<div class="col-sm-9 col9nhacvietmoi">
-								<ul>
-									<li><a href="#">Anh thế giới và em</a></li>
-									<li class="casi"><a href="#">Hương Tràm</a></li>
-								</ul>
-								
-							</div>
-						</div>
-						<div class="col-sm-6 col6nhacvietmoileft">
-							<div class="col-sm-3 col3nhacvietmoiright">
-								<a href="#">
-									<img class="card-img-top" src="img/nvm/nvm7.png" alt="Card image cap" style="width: 100%">
-								</a>
-								
-							</div>
-							<div class="col-sm-9 col9nhacvietmoi">
-								<ul>
-									<li><a href="#">Chờ một ngày nắng</a></li>
-									<li class="casi"><a href="#">Lynk Lee</a></li>
-								</ul>
-								
-							</div>
-								
-						</div>
-						<div class="col-sm-6 col6nhacvietmoiright">
-							<div class="col-sm-3 col3nhacvietmoileft">
-								<a href="#">
-									<img class="card-img-top" src="img/nvm/nvm8.jpg" alt="Card image cap" style="width: 100%">
-								</a>
-								
-							</div>
-							<div class="col-sm-9 col9nhacvietmoi">
-								<ul>
-									<li><a href="#">Ta còn yêu nhau</a></li>
-									<li class="casi"><a href="#">Đức Phúc</a></li>
-								</ul>
-								
-							</div>
-						</div>
-						<div class="col-sm-6 col6nhacvietmoileft">
-							<div class="col-sm-3 col3nhacvietmoiright">
-								<a href="#">
-									<img class="card-img-top" src="img/nvm/nvm9.jpg" alt="Card image cap" style="width: 100%">
-								</a>
-								
-							</div>
-							<div class="col-sm-9 col9nhacvietmoi">
-								<ul class="casi">
-									<li><a href="#">Em gái mưa</a></li>
-									<li class="casi"><a href="#">Hương Tràm</a></li>
-								</ul>
-								
-							</div>
-								
-						</div>
-						<div class="col-sm-6 col6nhacvietmoiright">
-							<div class="col-sm-3 col3nhacvietmoileft">
-								<a href="#">
-									<img class="card-img-top" src="img/nvm/nvm10.jpg" alt="Card image cap" style="width: 100%">
-								</a>
-								
-							</div>
-							<div class="col-sm-9 col9nhacvietmoi">
-								<ul>
-									<li><a href="#">Túy Âm</a></li>
-									<li class="casi"><a href="#">Xesi, Masew, Nhật Nguyễn</a></li>
-								</ul>
-								
-							</div>
-						</div>
+						<?php }
+						 ?>
+					
+				
 
 				</div> <!-- Hết col-sm-8 nhacvietmoi-->
 				<div class="col-sm-4 noidungtrai4">
@@ -556,7 +405,7 @@
 					<div class="col-sm-6">
 						<button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#demo1">Hỗ trợ</button>
 						
-							<div id="demo1" class="collapse colp" style="padding-top: 5px">
+							<div id="demo1" class="collapse colp" style="margin-top: 5px">
 							  <p><span class="glyphicon glyphicon-map-marker"></span> Việt Nam, HCM City</p>
 						      <p><span class="glyphicon glyphicon-phone"></span> 0906929906</p>
 						      <p><span class="glyphicon glyphicon-envelope"></span> thaithien11596@gmail.com</p>

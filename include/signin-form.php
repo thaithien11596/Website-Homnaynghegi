@@ -23,17 +23,14 @@
 
   <style>
     
-      .container.container3 a{
-        color: white;
-      }
-       .container.container3 a:hover{
-          text-decoration: none;
-      }
+      .container.container3 a{color: white;}
+      .container.container3 a:hover{text-decoration: none;}
+      .form-horizontal.signinform {background: linear-gradient(rgb(51, 51, 51), rgb(0, 0, 0));}
 
   </style>
    
     <div class="container container3">
-      <form class="form-horizontal" action="process_login.php" method="post">
+      <form class="form-horizontal signinform" action="process_login.php" method="post">
         <fieldset>
         <legend>Đăng nhập</legend>
         <div class="form-group">
@@ -53,17 +50,18 @@
         <div class="form-group">
           <label class="col-md-4 control-label"></label>
           <div class="col-md-4">
-            <button id="signin" name="signin" class="btn btn-info">Đăng nhập</button>
-            <button id="signup" name="signup" class="btn btn-success"><a href="signup-form.php">Đăng ký</a></button>
+            <button id="signin" name="signin" class="btn btn-info" style="background: linear-gradient(#2092a0,#10616b);">Đăng nhập</button>
+            <button id="signup" name="signup" class="btn btn-success" style="float:right;background: linear-gradient(#1dc11d,#009600);"><a href="signup-form.php">Đăng ký</a></button>
 
           </div>
 
         </div>
-        <span><?php   
+        <span style="padding: 5px; border-radius: 5px; background-color: #ca1212;text-align: center; font-size: 16px; display: block; color: white"><?php   
        
          if(isset($_SESSION["error"]))
                     {
                       echo $_SESSION["error"];
+                      session_destroy();
 
                     }
                      ?> </span>

@@ -7,8 +7,8 @@
 			// header('Location:signin-form.php');
 		}
 		else {
-			//require('../config/connect.php');
-			include ("../config/config.php");
+		//require('../config/connect.php');
+		include ("../config/config.php");
 
 		include (ROOT."/include/function.php");
 		spl_autoload_register("loadClass");
@@ -36,10 +36,11 @@
 							//session_start();
 							$_SESSION['user'] = $username;
 
-							// echo $_SESSION['user'];
+							echo $_SESSION['user'];
 							echo "<script>alert('Dang nhap thanh cong');
 								window.location='../index.php';
 							</script>";
+							
 							//header('Location:../index.php');
 						}
 						else {
@@ -58,9 +59,12 @@
 			//msqli_close($connect);
 			
 		}
-		$_SESSION['error'] = $error;
-		header("Location:signin-form.php");
-	}
+
+			$_SESSION['error'] = $error;
+			echo "<script>
+					window.location='signin-form.php';
+				</script>";
+}
 	
 			
  ?>
