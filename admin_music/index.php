@@ -4,6 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="sanpham/images.png" rel="icon" />
 <link rel="stylesheet" href="style/css.css" type="text/css" />
+<!--<link rel="stylesheet" href="template/signin.css" />-->
 <title>Quản trị Cơ Sở Dữ Liệu</title>
 </head>
 

@@ -1,32 +1,31 @@
-﻿Những thay đổi so với version 2:
-- Thiết kế lại giao diện website.
+﻿Những thay đổi so với version 3:
 - Fix lỗi giao diện ở một số trang.
-- Hoàn chỉnh tính năng phát nhạc.
-- Thêm button tải nhạc.
-- Bổ sung tính năng bảng xếp hạng.
-- Bổ sung danh mục bài hát (hiển thị nhiều bài hát hơn khi click vào xem thêm).
-- Bổ sung chức năng đăng nhập.
-- Bổ sung chức năng đăng ký (Chức năng đang hoàn thiện).
-- Bổ sung danh sách ca sĩ (Chức năng đang hoàn thiện).
-Những chức năng bi hạn chế:
+- Thêm hiệu ứng tuyết rơi cho website.
+- Thêm danh mục Album cho website.
+- Thêm chức năng tìm kiếm cho website.
+- Thêm chức năng quên mật khẩu cho thành viên.
+- Thêm chức năng đổi mật khẩu cho thành viên.
+- Thêm chức năng cập nhật thông tin thành viên.
+- Top 100 đổi thành Ca khúc mới.
 - Quản lý thông tin sau khi đăng nhập.
+Những chức năng bi hạn chế:
+- Quản lý Playlist.
 - Upload nhạc.
-- Đổi mật khẩu hoặc cấp lại mật khẩu đã mất.
 - Bình luận.
-- Album.
-- Tìm kiếm.
 - Hiện tại tải nhạc chỉ có thể thực hiện khi vào trang nghe nhạc.
-- Top 100.
 - Video (Coming soon).
 - Chất lượng nhạc khi dowload.
 - Hạn chế về thể loại ( Tập trung vào nhạc trẻ Việt Nam và Âu Mỹ ).
 
 Về phần Database:
-- Chỉnh sữa database phần playlist và chitietalbum.
+- Hoàn thiện và thêm một số thuộc tình vào các bảng.
 
 Về Admin:
-- Lỗi nhiều và hiện đang trong quá trình Fix lỗi nên sẽ upload trong phiên bản sau.
-
+- Fix các chức năng cơ bản như Thêm, Xóa, Sữa các danh mục.
+- Đưa lên Admin sau khi fix lỗi ở version 3.
+- Bỏ Thêm với Xóa Thành viên, thay thành Sữa Thành viên. 
+- Cập nhật hình ảnh Album, Database mới.
+- Chưa làm được chức năng Tìm kiếm theo tên Bài hát trong Quản lý Bài hát. 
 Lưu ý:
 - Vì dung lượng audio và hình ảnh ngày càng nặng nên mình quyết định Upload Google Drive
 - Link:https://drive.google.com/drive/folders/1p7gKoFXkF7-jqqAyqybgr9kaLC8m5TMV?usp=sharing

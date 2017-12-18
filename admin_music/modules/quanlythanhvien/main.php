@@ -4,8 +4,8 @@
 			$tam=$_GET['ac'];
 		}else{	
 			$tam='';
-		}if($tam=='them'){
-			include('modules/quanlythanhvien/them.php');
+		}if($tam=='sua'){
+			include('modules/quanlythanhvien/sua.php');
 		}
     ?>
 </div>

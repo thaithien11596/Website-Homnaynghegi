@@ -1,28 +1,32 @@
 <script type="text/javascript">
 function kt(){
-	HotenCasi=document.getElementById('HotenCasi').value;
-  NgaysinhCasi=document.getElementById('NgaysinhCasi').value;
-  QuequanCasi=document.getElementById('QuequanCasi').value;
-  GioitinhCasi=document.getElementById('GioitinhCasi').value;
-  TieusuCasi=document.getElementById('TieusuCasi').value;
-  idQuocgia=document.getElementById('idQuocgia').value;
+	HoTenCasi=document.getElementById('HotenCasi').value;
+  ImageCasi=document.getElementById('imageCasi').value;
+  NgaySinhCasi=document.getElementById('NgaysinhCasi').value;
+  QueQuanCasi=document.getElementById('QuequanCasi').value;
+  GioiTinhCasi=document.getElementById('GioitinhCasi').value;
+  TieuSuCasi=document.getElementById('TieusuCasi').value;
+  IdQuocgia=document.getElementById('idQuocgia').value;
 
-	if(HotenCasi=='')
+	if(HoTenCasi=='')
 	{alert('Nhập HotenCasi bạn ơi');
 	return false;}
-  if(NgaysinhCasi=='')
+  if(ImageCasi=='')
+  {alert('Nhập ImageCasi bạn ơi');
+  return false;}
+  if(NgaySinhCasi=='')
   {alert('Nhập NgaysinhCasi bạn ơi');
   return false;}
-  if(QuequanCasi=='')
+  if(QueQuanCasi=='')
   {alert('Nhập QuequanCasi bạn ơi');
   return false;}
-  if(GioitinhCasi=='')
+  if(GioiTinhCasi=='')
   {alert('Chọn GioitinhCasi bạn ơi');
   return false;}
-  if(TieusuCasi=='')
+  if(TieuSuCasi=='')
   {alert('Nhập TieusuCasi bạn ơi');
   return false;}
-  if(idQuocgia=='')
+  if(IdQuocgia=='')
   {alert('Nhập idQuocgia bạn ơi');
   return false;}
 	return true;
@@ -53,8 +57,12 @@ function kt(){
     <td><input type="text" name="HotenCasi" id="HoTenCasi" value="<?php echo $row['HotenCasi']; ?>" /></td>
   </tr>
   <tr>
+    <td>Hình Ảnh Ca sĩ</td>
+    <td><input type="file" name="imageCasi" value="<?php echo $row['imageCasi'] ?>" id='ImageCasi'/></td>
+  </tr>
+  <tr>
     <td>Ngày Sinh Ca sĩ</td>
-    <td><input type="text" name="NgaysinhCasi" id="NgaySinhCasi" value="<?php echo $row['NgaysinhCasi']; ?>" /></td>
+    <td><input type="date" name="NgaysinhCasi" id="NgaySinhCasi" value="<?php echo $row['NgaysinhCasi']; ?>" /></td>
   </tr>
   <tr>
     <td>Quê Quán Ca sĩ</td>
@@ -64,25 +72,26 @@ function kt(){
     <td>Giới Tính Ca sĩ</td>
     <td><input type="text" name="GioitinhCasi" id="GioiTinhCasi" value="<?php echo $row['GioitinhCasi']; ?>" /></td>
   </tr>
-  <tr>
-    <td>Tiểu Sữ Ca sĩ</td>
-    <td><input type="text" name="TieusuCasi" id="TieuSuCasi" value="<?php echo $row['TieusuCasi']; ?>" /></td>
+  </tr>
+  <td>Tiểu Sữ Ca sĩ</td>
+    <td><textarea name="TieusuCasi" cols="40" rows="15" id="TieuSuCaSi"><?php echo $row['TieusuCasi'] ?></textarea></td>
   </tr>
   
-  <?php //load lấy Id Quốc gia gắn vào combobox
+  <?php //load lấy Id Quốc Gia gắn vào combobox
     $sql="select * from quocgia";
     $objStm = $objPdo->query($sql);
     $data = $objStm->fetchAll(PDO::FETCH_ASSOC);
     
   ?>
   <tr>
-    <td>ID QUỐC GIA</td>
-    <td><select name="idQuocgia">
+    <td>Tên Quốc Gia</td>
+    <td>
+      <select name="IdQuocgia">
     <?php // tạo vòng lập lấy giá trị cho combobox
   foreach($data as $row)  
-    {
+    {// echo $row['idQuocgia'];
   ?>
-    <option><?php echo $row['idQuocgia']?></option>
+    <option value="<?php echo $row['idQuocgia'] ?>"><?php echo $row['TenQuocgia']?></option>
     <?php } ?>
     </select>
     </td>

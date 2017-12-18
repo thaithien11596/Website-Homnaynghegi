@@ -1,20 +1,20 @@
 
 <script type="text/javascript">
 function kt(){
-	idcs=document.getElementById('idCasi').value; 
 	hotencs=document.getElementById('HotenCasi').value;
+  imagecs=document.getElementById('imageCasi').value;
   ngaysinhcs=document.getElementById('NgaysinhCasi').value;
   quequancs=document.getElementById('QuequanCasi').value;
   gioitinhcs=document.getElementById('GioitinhCasi').value;
   tieusucs=document.getElementById('TieusuCasi').value;
   idqg=document.getElementById('idQuocgia').value;
  
-	if (idcs=='')
+	if (hotencs=='')
      {
-         alert('Nhập mã bạn ơi'); return false; 
-     }if (hotencs=='')
+         alert('Nhập HotenCasi bạn ơi'); return false;
+      }if (imagecs=='')
      {
-         alert('Nhập HotenCasi bạn ơi'); return false; 
+         alert('Chọn ImageCasi bạn ơi'); return false;     
      }if (ngaysinhcs=='')
      {
          alert('Nhập NgaysinhCasi bạn ơi'); return false; 
@@ -43,29 +43,28 @@ function kt(){
   <tr>
     <td colspan="2"><div align="center" style="color:#CEF6F5; background:#0040FF">THÊM CA SĨ</div></td>
   </tr>
-  <tr>
-    <td>ID Ca sĩ</td>
-    <td><input type="text" name="idCasi"  id="IdCasi" size="28px"/></td>
-  </tr>
    <tr>
     <td>Ho Tên Ca sĩ</td>
-    <td><input type="text" name="HotenCasi" id="HoTenCasi" size="28px"/></td>
+    <td><input type="text" name="HotenCasi" id="HoTenCasi" size="35px"/></td>
+  </tr>
+  <tr>
+    <td>Image Ca Sĩ</td>
+    <td><input type="file" name="imageCasi"></td>
   </tr>
   <tr>
     <td>Ngày Sinh Ca sĩ</td>
-    <td><input type="text" name="NgaysinhCasi" id="NgaySinhCasi" size="28px"/></td>
+    <td><input type="date" name="NgaysinhCasi" id="NgaySinhCasi" /></td>
   </tr>
   <tr>
     <td>Quê Quán Ca sĩ</td>
-    <td><input type="text" name="QuequanCasi" id="QueQuanCasi" size="28px"/></td>
+    <td><input type="text" name="QuequanCasi" id="QueQuanCasi" size="35px"/></td>
   </tr>
   <tr>
     <td>Giới Tính Ca sĩ</td>
-    <td><input type="text" name="GioitinhCasi" id="GioiTinhCasi" size="28px"/></td>
+    <td><input type="text" name="GioitinhCasi" id="GioiTinhCasi" size="35px"/></td>
   </tr>
-  <tr>
-    <td>Tiểu Sữ Ca sĩ</td>
-    <td><input type="text" name="TieusuCasi" id="TieuSuCasi" size="28px"/></td>
+  <td>Tiểu Sữ Ca sĩ</td>
+    <td><textarea name="TieusuCasi" cols="40" rows="15" id="TieuSuCaSi"></textarea></td>
   </tr>
   <?php //load lấy Id Quốc gia gắn vào combobox
     $sql="select * from quocgia";
@@ -74,13 +73,14 @@ function kt(){
     
   ?>
   <tr>
-    <td>ID QUỐC GIA</td>
-    <td><select name="idQuocgia">
+    <td>Tên Quốc Gia</td>
+    <td>
+      <select name="IdQuocgia">
     <?php // tạo vòng lập lấy giá trị cho combobox
   foreach($data as $row)  
-    {
+    {// echo $row['idQuocgia'];
   ?>
-    <option><?php echo $row['idQuocgia']?></option>
+    <option value="<?php echo $row['idQuocgia'] ?>"><?php echo $row['TenQuocgia']?></option>
     <?php } ?>
     </select>
     </td>

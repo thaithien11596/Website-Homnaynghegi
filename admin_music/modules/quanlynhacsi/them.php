@@ -1,19 +1,19 @@
 
 <script type="text/javascript">
-function kt(){
-	idns=document.getElementById('idNhacsi').value; 
+function kt(){ 
 	hotenns=document.getElementById('HotenNhacsi').value;
+  imagens=document.getElementById('imageNhacsi').value;
   ngaysinhns=document.getElementById('NgaysinhNhacsi').value;
   quequanns=document.getElementById('QuequanNhacsi').value;
   tieusuns=document.getElementById('TieusuNhacsi').value;
   idqg=document.getElementById('idQuocgia').value;
  
-	if (idns=='')
-     {
-         alert('Nhập mã bạn ơi'); return false; 
-     }if (hotenns=='')
+	if (hotenns=='')
      {
          alert('Nhập HotenNhacsi bạn ơi'); return false; 
+     }if (imagens=='')
+     {
+         alert('Chọn ImageNhacsi bạn ơi'); return false; 
      }if (ngaysinhns=='')
      {
          alert('Nhập NgaysinhNhacsi bạn ơi'); return false; 
@@ -39,24 +39,23 @@ function kt(){
     <td colspan="2"><div align="center" style="color:#CEF6F5; background:#0040FF">THÊM NHẠC SĨ</div></td>
   </tr>
   <tr>
-    <td>ID Nhạc sĩ</td>
-    <td><input type="text" name="idNhacsi"  id="IdNhacsi" size="28px"/></td>
-  </tr>
-   <tr>
     <td>Ho Tên Nhạc sĩ</td>
     <td><input type="text" name="HotenNhacsi" id="HoTenNhacsi" size="28px"/></td>
   </tr>
   <tr>
+    <td>Image Nhạc Sĩ</td>
+    <td><input type="file" name="imageNhacsi"></td>
+  </tr>
+  <tr>
     <td>Ngày Sinh Nhạc sĩ</td>
-    <td><input type="text" name="NgaysinhNhacsi" id="NgaySinhNhacsi" size="28px"/></td>
+    <td><input type="date" name="NgaysinhNhacsi" id="NgaySinhNhacsi" size="28px"/></td>
   </tr>
   <tr>
     <td>Quê Quán Nhạc sĩ</td>
     <td><input type="text" name="QuequanNhacsi" id="QueQuanNhacsi" size="28px"/></td>
   </tr>
-  <tr>
-    <td>Tiểu Sữ Nhạc sĩ</td>
-    <td><input type="text" name="TieusuNhacsi" id="TieuSuNhacsi" size="28px"/></td>
+  <td>Tiểu Sữ Nhạc sĩ</td>
+    <td><textarea name="TieusuNhacsi" cols="40" rows="15" id="TieuSuNhacSi"></textarea></td>
   </tr>
   <?php //load lấy Id Quốc Gia gắn vào combobox
     $sql="select * from quocgia";
@@ -65,13 +64,14 @@ function kt(){
     
   ?>
   <tr>
-    <td>ID Quốc Gia</td>
-    <td><select name="idQuocgia">
+    <td>Tên Quốc Gia</td>
+    <td>
+      <select name="IdQuocgia">
     <?php // tạo vòng lập lấy giá trị cho combobox
   foreach($data as $row)  
-    {
+    {// echo $row['idQuocgia'];
   ?>
-    <option><?php echo $row['idQuocgia']?></option>
+    <option value="<?php echo $row['idQuocgia'] ?>"><?php echo $row['TenQuocgia']?></option>
     <?php } ?>
     </select>
     </td>

@@ -43,23 +43,24 @@
   echo '<br>'.'TỔNG CA SĨ LÀ: '.$row[0];
   // ---------------------------- tìm kiếm sp
   if(isset($_POST['sub-timkiem'])){
-  $matk=$_POST['timkiem'];
-  $sql_tk="select * from casi where idCasi='$matk'";
+  $tentk=$_POST['timkiem'];
+  $sql_tk="select * from casi where HotenCasi like '%$tentk%'";
   $objStmtk = $objPdo->query($sql_tk);
   $datatk = $objStmtk->fetchAll(PDO::FETCH_ASSOC);
         foreach($datatk as $rowtk)
         { 
-      $m=$rowtk['idCasi'];
-      if($matk=='$m'){
-        echo '<script>alert("Không tìm thấy Id Ca sĩ")</script>';
+      $m=$rowtk['HotenCasi'];
+      if($tentk=='$m'){
+        echo '<script>alert("Không tìm thấy Tên Ca sĩ")</script>';
       }else{
   ?>
     <BR /><hr /><p style="color:#000;background:pink " align="center">CA SĨ TÌM KIẾM:</p>
   <table width="100%" border="1">
-      <tr align="center">
+      <tr align="center" style="background:#0040FF;color:#CEF6F5;">
         
         <td>Id Ca sĩ</td>
         <td>Họ Tên Ca sĩ</td>
+        <td>Image Ca sĩ</td>
         <td>Ngày Sinh Ca sĩ</td>
         <td>Quê Quán Ca sĩ</td>
         <td>Giới Tính Ca sĩ</td> 
@@ -73,6 +74,7 @@
         
         <td><?php echo $rowtk['idCasi'] ?></td>
         <td><?php echo $rowtk['HotenCasi'] ?></td>
+        <td><img src="../img/<?php echo $rowtk['imageCasi'] ?>" style="height: 70px"/></td>
         <td><?php echo $rowtk['NgaysinhCasi'] ?></td>
         <td><?php echo $rowtk['QuequanCasi'] ?></td>
         <td><?php echo $rowtk['GioitinhCasi'] ?></td>
@@ -90,18 +92,19 @@
   </table>
   <p style="background:pink;height:40px"></p>
   <?php } ?>
-    <!------- END CODE TÌM KIẾM --------->
+    <!-- END CODE TÌM KIẾM -->
      <br />
 <p style="width:200px;color:#00F;size:20px;font-style:inherit;float:left"> TRANG HIỆN TẠI LÀ: <?php echo $get_trang?></p>
 <form action="" method="post" style="float:right">
-    Nhập ID Ca SĨ:<input type="text" name="timkiem" />
-    <input type="submit" name="sub-timkiem" value="Tìm Kiếm Ca Sĩ" />
+    Nhập Tên Ca Sĩ:<input type="text" name="timkiem" />
+    <input type="submit" name="sub-timkiem" value="Tìm Kiếm" />
 </form>
    
 <table width="100%" border="1">
   <tr class="firstrow" >
     <td>Id Ca sĩ</td>
     <td>Họ Tên Ca sĩ</td>
+    <td>Image Ca sĩ</td>
     <td>Ngày Sinh Ca sĩ</td>
     <td>Quê Quán Ca sĩ</td>
     <td>Giới Tính Ca sĩ</td> 
@@ -118,6 +121,7 @@
   <tr align="center">
     <td><?php echo $row['idCasi'] ?></td>
     <td><?php echo $row['HotenCasi'] ?></td>
+    <td><img src="../img/<?php echo $row['imageCasi']?> " style="height: 70px"/></td>
     <td><?php echo $row['NgaysinhCasi'] ?></td>
     <td><?php echo $row['QuequanCasi'] ?></td>
     <td><?php echo $row['GioitinhCasi'] ?></td>

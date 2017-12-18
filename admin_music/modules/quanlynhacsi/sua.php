@@ -1,6 +1,7 @@
 <script type="text/javascript">
 function kt(){
-	HotenNhacsi=document.getElementById('HotenNhacsi').value;
+	  HotenNhacsi=document.getElementById('HotenNhacsi').value;
+    ImageNhacsi=document.getElementById('ImageNhacsi').value;
   	NgaysinhNhacsi=document.getElementById('NgaysinhNhacsi').value;
   	QuequanNhacsi=document.getElementById('QuequanNhacsi').value;
   	TieusuNhacsi=document.getElementById('TieusuNhacsi').value;
@@ -9,6 +10,9 @@ function kt(){
 	if(HotenNhacsi=='')
 	{alert('Nhập HotenNhacsi bạn ơi');
 	return false;}
+    if(imageNhacsi=='')
+    {alert('Chọn ImageNhacsi bạn ơi');
+    return false;}
   	if(NgaysinhNhacsi=='')
   	{alert('Nhập NgaysinhNhacsi bạn ơi');
   	return false;}
@@ -49,6 +53,10 @@ function kt(){
     <td><input type="text" name="HotenNhacsi" id="HoTenNhacsi" value="<?php echo $row['HotenNhacsi']; ?>" /></td>
   </tr>
   <tr>
+    <td>Image Nhạc sĩ</td>
+    <td><input type="file" name="imageNhacsi"></td>
+  </tr>
+  <tr>
     <td>Ngày Sinh Nhạc sĩ</td>
     <td><input type="text" name="NgaysinhNhacsi" id="NgaySinhNhacsi" value="<?php echo $row['NgaysinhNhacsi']; ?>" /></td>
   </tr>
@@ -56,9 +64,8 @@ function kt(){
     <td>Quê Quán Nhạc sĩ</td>
     <td><input type="text" name="QuequanNhacsi" id="QueQuanNhacsi" value="<?php echo $row['QuequanNhacsi']; ?>" /></td>
   </tr>
-  <tr>
-    <td>Tiểu Sữ Nhạc sĩ</td>
-    <td><input type="text" name="TieusuNhacsi" id="TieuSuNhacsi" value="<?php echo $row['TieusuNhacsi']; ?>" /></td>
+  <td>Tiểu Sữ Nhạc sĩ</td>
+    <td><textarea name="TieusuNhacsi" cols="40" rows="15" id="TieuSuNhacSi"><?php echo $row['TieusuNhacsi'] ?></textarea></td>
   </tr>
   
   <?php //load lấy Id Quốc Gia gắn vào combobox
@@ -68,13 +75,14 @@ function kt(){
     
   ?>
   <tr>
-    <td>ID Quốc Gia</td>
-    <td><select name="idQuocgia">
+    <td>Tên Quốc Gia</td>
+    <td>
+      <select name="IdQuocgia">
     <?php // tạo vòng lập lấy giá trị cho combobox
   foreach($data as $row)  
-    {
+    {// echo $row['idQuocgia'];
   ?>
-    <option><?php echo $row['idQuocgia']?></option>
+    <option value="<?php echo $row['idQuocgia'] ?>"><?php echo $row['TenQuocgia']?></option>
     <?php } ?>
     </select>
     </td>

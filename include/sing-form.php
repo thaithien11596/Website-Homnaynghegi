@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-  
+  	
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Welcome to my webiste</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,10 +12,12 @@
 	<link rel="stylesheet" href="../css/bootstrap.css">
 	<link rel="stylesheet" href="../css/style.css?v=1.0">
 	<link rel="stylesheet" href="../css/style-sing.css">
-    
+	
 	
 </head>
+
 <style type="text/css">
+	a:hover.singer {color: white}
 	.container.container3 {min-height: 360px;}
 	.jumbotron.jbstr{margin-top: 0px;padding: 10px;height: auto;margin-bottom: 5px;width: 765px;background: linear-gradient(#040404,#1b1b1b);}
 	
@@ -38,6 +40,7 @@ display: none}div#amazingaudioplayer-1 {max-width: 498px !important}}
 
 </style>
 <body>
+	<?php $dem=0; ?>
 	<?php 
 				// require('../config/connect.php');
 			
@@ -48,12 +51,13 @@ display: none}div#amazingaudioplayer-1 {max-width: 498px !important}}
 
 								$idQg = $_GET['idQg'];
 							} 
-			include ("../config/config.php");
-			include (ROOT."/include/function.php");
-			spl_autoload_register("loadClass"); 
 			$music=new Music();
 			$data=$music->loadSing($idBh);
 			$data1=$music->randMusic($idQg);
+			$data2=$music->commentSing($idBh);
+			foreach ($data as $result) {
+				
+			}
 
 
 
@@ -78,12 +82,14 @@ display: none}div#amazingaudioplayer-1 {max-width: 498px !important}}
 	
         <div style="margin:12px auto;">
     
-    
+  
+ 
+ 
 </div>
 		<div class="container container3">
 			<div class="row rowlbh" style="height: auto">
 				<div class="col-sm-8 col8sing" style="height: auto">
-
+				
 						<?php 
 
 								foreach ($data as $result) {
@@ -94,7 +100,7 @@ display: none}div#amazingaudioplayer-1 {max-width: 498px !important}}
 											
 										?>
 											
-										    <label for="" style="color:white; font-size: 22px; color: #dedede;margin-top: 20px;">Tên bài hát: <?= $result['TenBaihat'] ?> - <a href="#" style="color: #dedede"><?= $result['HotenCasi'] ?></a></label>
+										    <label for="" style="color:white; font-size: 22px; color: #dedede;margin-top: 20px;">Tên bài hát: <?= $result['TenBaihat'] ?> - <a class="singer" href="detail_singer.php?idsinger=<?= $result['idCasi'] ?>&&idQg=<?= $result['idQuocgia'] ?>" style="text-decoration: none"><?= $result['HotenCasi'] ?></a></label>
 										    	<!-- <audio class="audiosing" src="../<?= $result ?>" type="audio/mp3" autobuffer autoloop loop controls autoplay></audio> -->
 											<!-- Insert to your webpage where you want to display the audio player -->
                                             <div id="amazingaudioplayer-1" style="margin-right: 15px" >
@@ -103,7 +109,7 @@ display: none}div#amazingaudioplayer-1 {max-width: 498px !important}}
                                                         <div class="amazingaudioplayer-source" data-src="../<?= $result['LinkBaihat'] ?>" data-type="audio/mpeg" />
                                                     </li>
                                                 </ul>
-                                  				<div><a href="../<?= $result['LinkBaihat'] ?>" download="<?= $result['TenBaihat'] ?>" class="btn btn-danger" style="float:right;background: linear-gradient(#c32a2a,#801414);"><span class="glyphicon glyphicon-download-alt"></span> Tải về</a></div>
+                                  				<div><a href="../<?= $result['LinkBaihat'] ?>" onclick="increase_n(1)" download="<?= $result['TenBaihat'] ?>" class="btn btn-danger" style="float:right;background: linear-gradient(#c32a2a,#801414);border-radius: 8px"><span class="glyphicon glyphicon-download-alt"></span> Tải về</a></div>
 
                                             </div>
 
@@ -111,24 +117,50 @@ display: none}div#amazingaudioplayer-1 {max-width: 498px !important}}
 													 
 													<div class="jumbotron jbstr" style="border:1px solid gray;box-shadow: 0 0 1px 1px #d2d2d2">
 														<h4 class="display-3" style="float: left;">Lời bài hát: <?= $result['TenBaihat'] ?></h4>
-														<h4 style="float: right">Lượt nghe: <?= number_format($singNumber) ?></h4>
-														<p class="lbh"><?= $result['LoiBaihat'] ?></p>
+														
+														<h4 style="float: right">Lượt nghe: <?= number_format($singNumber) ?></h4><br>														
+<br>
+														<p class="lbh"> <?= nl2br($result['LoiBaihat']) ?></p> <br>
 												<!-- 		<a href="singer_form.php">Báo lỗi</a>
 														<a href="singer_form.php">Góp ý lyrics</a> -->
 														<p >Đóng góp: homnaynghegi</p>
+														
+
 													</div>
 										<?php	
-										
-									
-								
+
 								 } 
 								
 						 ?>
+						
+						  <script>
+   	var size_ini = <?= $result['LuottaiBaihat'] ?>;
+    function increase_n(size) {
+        var size_increase = size_ini++;
+         alert(size_increase);
+        $(".content").html("<span>" + size_increase + "</span>");
+        
+    }
+    $dem = 
 
+
+
+
+
+
+   </script>
+
+<script type="text/javascript">
+   $(".lbh").shorten({
+    "showChars" : 300,
+    "moreText"  : "Xem toàn bộ",
+    "lessText"  : "Rút gọn",
+});
+</script>
 
 			</div> <!-- Hết col8 -->
 			<div class="col-sm-4 noidungtrai1" style="left:23px;top: 57px;border: 0px;height: auto;box-shadow: 0 0 0 0!important">
-				<h3 style="padding:5px; text-align: center; font-weight:bold; border-radius: 5px; color: white; background: linear-gradient(#383838,#212121);margin-top: 0px">Có thể bạn muốn nghe</h3>
+				<h3 style="padding:5px; text-align: center; font-weight:bold; border-radius: 5px; color: white; background: linear-gradient(#383838,#212121);margin-top: 0px;border: 1px solid gray">Có thể bạn muốn nghe</h3>
 		 		<div class="list-group">
 		 			<?php foreach ($data1 as $result): ?>
 		 				    <a href="sing-form.php?idBh=<?= $result['idChitietbaihat'] ?>&&idQg=<?= $result['idQuocgia'] ?>" class="list-group-item list-group-item-action lstbxh"><img src="../img/<?= $result['imageBaihat'] ?>" alt="" style="width: 40px;height: 40px; border: 1px solid gray"> <?= $result['TenBaihat'] ?></a>
@@ -200,7 +232,7 @@ display: none}div#amazingaudioplayer-1 {max-width: 498px !important}}
 		<div class="row ">
 		<div class="col-sm-8" style="padding-right:0px;top:20px">
 			<form action="#" method="post">
-				<textarea name="" id="" cols="30" rows="10" style="border:1px solid #FF5722; border-radius:5px; box-shadow: 0 0 3px 1px; width: 100%; height: 80px;background: linear-gradient(#040404,#1b1b1b);color: #ffffff;font-size: 16px"></textarea>
+				<textarea name="" id="" cols="30" rows="10" style="border:1px solid #FF5722; border-radius:5px; box-shadow: 0 0 3px 1px; width: 100%; height: 80px;background: linear-gradient(#040404,#1b1b1b);color: #dedede;font-size: 18px"></textarea>
 				 <button id="comment" name="comment" class="btn btn-success" style="float:right;background-color: #3c3939; border-color: #FF5722">Bình luận</button>
 			</form>
 		</div>	
@@ -213,22 +245,36 @@ display: none}div#amazingaudioplayer-1 {max-width: 498px !important}}
 					<hr class="m-y-md">
 					<div class="row">
 						<div class="col-sm-6">
-						<button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#demo">Giới thiệu</button>
+						<button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#demo" style="background: linear-gradient(#981414,#6f1616);">Giới thiệu</button>
 						
-							<div id="demo" class="collapse">
-						    	Website nghe nhạc trực tuyến homnaynghegi.tk nhằm mục đích mang âm nhạc đến với gần với tất cả mọi người hay những người yêu nhạc thông qua mạng Internet.
+							<div id="demo" class="collapse" style="text-align: justify;">
+						    	<p style="font-size: 18px;">Website nghe nhạc trực tuyến homnaynghegi.tk nhằm mục đích mang âm nhạc đến với gần với tất cả mọi người hay những người yêu nhạc thông qua mạng Internet.</p>
+						  </div>
+						  <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#demo4" style="background: linear-gradient(#981414,#6f1616);">FAQs</button>
+						
+							<div id="demo4" class="collapse" style="text-align: justify;">
+						    	<p style="font-size: 18px;">Coming Soon</p>
 						  </div>
 					</div>
 					<div class="col-sm-6">
-						<button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#demo1">Hỗ trợ</button>
+						<button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#demo1" style="background: linear-gradient(#981414,#6f1616);">Hỗ trợ</button>
 						
-							<div id="demo1" class="collapse colp" style="margin-top: 5px">
-							  <p><span class="glyphicon glyphicon-map-marker"></span> Việt Nam, HCM City</p>
-						      <p><span class="glyphicon glyphicon-phone"></span> 0906929906</p>
-						      <p><span class="glyphicon glyphicon-envelope"></span> thaithien11596@gmail.com</p>
+							<div id="demo1" class="collapse colp" style="margin-top: 5px;text-align: justify;">
+							  <p style="font-size: 18px"><span class="glyphicon glyphicon-map-marker"></span> Việt Nam, HCM City</p>
+						      <p style="font-size: 18px"><span class="	glyphicon glyphicon-earphone"></span> 0906929906</p>
+						      <p style="font-size: 18px"><span class="glyphicon glyphicon-envelope"></span> thaithien11596@gmail.com</p>
+						  </div>
+						  	<button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#demo2" style="background: linear-gradient(#981414,#6f1616);">Góp ý</button>
+						
+							<div id="demo2" class="collapse colp" style="margin-top: 5px">
+							  <p style="font-size: 18px;"><span class="glyphicon glyphicon-map-marker"></span> Mọi ý kiến đóng góp website vui lòng Email về thaithien11596@gmail.com hoặc SĐT: 0906929906</p>
+						    
 						  </div>
 
 					</div>
+					
+					
+
 					</div>
 					
 					  
@@ -241,5 +287,13 @@ display: none}div#amazingaudioplayer-1 {max-width: 498px !important}}
 			</div><!-- Hết Footer -->
 	</div> <!-- Hết jumbotron-->
 	
+	 <!-- Insert to your webpage before the </head> -->
+    <script src="audioplayerengine/jquery.js"></script>
+    <script src="audioplayerengine/amazingaudioplayer.js"></script>
+    <link rel="stylesheet" type="text/css" href="audioplayerengine/initaudioplayer-1.css">
+    <script src="audioplayerengine/initaudioplayer-1.js"></script>
+    <!-- End of head section HTML codes -->
+
+    
 </body>
 </html>

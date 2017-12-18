@@ -25,10 +25,10 @@
   {
     $trang1=0;
   }else{
-    $trang1=($get_trang*4)-4;
+    $trang1=($get_trang*8)-8;
   }
   
-  $sql="select * from quocgia limit $trang1,4"; // trang1 (vị trí quốc gia hiện tại) , lấy 4 quốc gia
+  $sql="select * from quocgia limit $trang1,8"; // trang1 (vị trí quốc gia hiện tại) , lấy 8 quốc gia
   $objStm = $objPdo->query($sql);
   $data = $objStm->fetchAll(PDO::FETCH_ASSOC);
   
@@ -36,30 +36,30 @@
   $sql_sql="SELECT count(*) FROM quocgia";
   $result = $objPdo->query($sql_sql);
   $row = $result->fetch(PDO::FETCH_NUM);
-  $a=ceil($row[0]/2);
+  $a=ceil($row[0]/4);
   for($b=1;$b<=$a;$b++){
     echo '<a href="index.php?quanly=quanlyquocgia&ac=them&trang='.$b.'" style="text-decoration:none;">'.' '. $b .' '.'</a>'; 
   }
   echo '<br>'.'TỔNG QUỐC GIA LÀ: '.$row[0];
   // ---------------------------- tìm kiếm quốc gia
   if(isset($_POST['sub-timkiem'])){
-  $matk=$_POST['timkiem'];
-  $sql_tk="select * from quocgia where idQuocgia='$matk'";
+  $tentk=$_POST['timkiem'];
+  $sql_tk="select * from quocgia where TenQuocgia like '%$tentk%'";
   $objStmtk = $objPdo->query($sql_tk);
   $datatk = $objStmtk->fetchAll(PDO::FETCH_ASSOC);
         foreach($datatk as $rowtk)
         { 
       $m=$rowtk['idQuocgia'];
-      if($matk=='$m'){
-        echo '<script>alert("Không tìm thấy Id Quốc Gia")</script>';
+      if($tentk=='$m'){
+        echo '<script>alert("Không tìm thấy Tên Quốc Gia")</script>';
       }else{
   ?>
     <BR /><hr /><p style="color:#000;background:pink " align="center">QUỐC GIA TÌM KIẾM:</p>
   <table width="100%" border="1">
-      <tr align="center">
+      <tr align="center" style="background:#0040FF;color:#CEF6F5">
         
         <td>Id Quốc Gia</td>
-        <td>Tên Quốc Gia</td>
+        <td >Tên Quốc Gia</td>
         
         <td colspan="2">Quản lý</td>
       </tr>
@@ -81,12 +81,12 @@
   </table>
   <p style="background:pink;height:40px"></p>
   <?php } ?>
-    <!------- END CODE TÌM KIẾM --------->
+    <!-- END CODE TÌM KIẾM -->
      <br />
 <p style="width:200px;color:blue;size:20px;font-style:inherit;float:left"> TRANG HIỆN TẠI LÀ: <?php echo $get_trang?></p>
 <form action="" method="post" style="float:right">
-    Nhập ID Quốc Gia:<input type="text" name="timkiem" />
-    <input type="submit" name="sub-timkiem" value="Tìm Kiếm Quốc gia" />
+    Nhập Tên Quốc Gia:<input type="text" name="timkiem" />
+    <input type="submit" name="sub-timkiem" value="Tìm Kiếm" />
 </form>
    
 <table width="100%" border="1">

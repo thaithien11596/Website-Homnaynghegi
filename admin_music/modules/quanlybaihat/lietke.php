@@ -43,20 +43,20 @@
 	echo '<br>'.'TỔNG BÀI HÁT LÀ: '.$row[0];
 	// ---------------------------- tìm kiếm sp
 	if(isset($_POST['sub-timkiem'])){
-	$matk=$_POST['timkiem'];
-	$sql_tk="select * from baihat where idBaihat='$matk'";
+	$tentk=$_POST['timkiem'];
+	$sql_tk="select * from baihat where TenBaihat like '%$tentk%'";
 	$objStmtk = $objPdo->query($sql_tk);
 	$datatk = $objStmtk->fetchAll(PDO::FETCH_ASSOC);
         foreach($datatk as $rowtk)
         { 
-			$m=$rowtk['idBaihat'];
-			if($matk=='$m'){
-				echo '<script>alert("Không tìm thấy mã bài hát")</script>';
+			$m=$rowtk['TenBaihat'];
+			if($tentk=='$m'){
+				echo '<script>alert("Không tìm thấy Tên bài hát")</script>';
 			}else{
 	?>
     <BR /><hr /><p style="color:#000;background:pink" align="center">BÀI HÁT TÌM KIẾM:</p>
 	<table width="100%" border="1">
-      <tr align="center">
+      <tr align="center" style="background:#0040FF;color:#CEF6F5">
       	
         <td>Id Bài Hát</td>
         <td>Tên Bài Hát</td>
@@ -86,12 +86,12 @@
 	</table>
 	<p style="background:pink;height:20px"></p>
 	<?php } ?>
-    <!------- END CODE TÌM KIẾM --------->
+    <!-- END CODE TÌM KIẾM -->
      <br />
 <p style="width:200px;color:#00F;size:20px;font-style:inherit;float:left"> TRANG HIỆN TẠI LÀ: <?php echo $get_trang?></p>
 <form action="" method="post" style="float:right">
-		Nhập ID Bài Hát:<input type="text" name="timkiem" />
-    <input type="submit" name="sub-timkiem" value="Tìm Kiếm Bài Hát" />
+		Nhập Tên Bài Hát:<input type="text" name="timkiem" />
+    <input type="submit" name="sub-timkiem" value="Tìm Kiếm" />
 </form>
    
 <table width="100%" border="1">

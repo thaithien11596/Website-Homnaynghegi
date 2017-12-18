@@ -19,16 +19,16 @@ function checkPassword($string)
 }
 
 
-// function checkEmail($string)
-// { 
-// 	if (preg_match("/^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]{2,5}$/", $string))
-// 	 return true;
-// 	$d=getdate()['year'].'-'.getdate()['mon'].'-'.getdate()['mday'];
-// 	$n=$d-$string;
-// 	if ($n>='12')
-// 	 return true;
-// 	return false;	
-// }
+function checkEmail($string)
+{ 
+	if (preg_match("/^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]{2,5}$/", $string))
+	 return true;
+	$d=getdate()['year'].'-'.getdate()['mon'].'-'.getdate()['mday'];
+	$n=$d-$string;
+	if ($n>='12')
+	 return true;
+	return false;	
+}
 // function checkGhiChu($string)
 // {
 // 	if ((preg_match("/^[a-zA-Z0-9._-]*$/",$string))) 

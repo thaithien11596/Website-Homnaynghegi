@@ -70,77 +70,80 @@ function kt(){
   </tr>
   <tr>
     <td>Hình Ảnh Bài Hát</td>
-    <td><input type="text" name="imageBaihat" value="<?php echo $row['imageBaihat'] ?>" id='ImageBaihat'/></td>
+    <td><input type="file" name="imageBaihat" value="<?php echo $row['imageBaihat'] ?>" id='ImageBaihat'/></td>
   </tr>
   <tr>
     <td>Ngày Đăng Bài Hát</td>
-    <td><textarea name="NgaydangBaihat" cols="40" rows="15" id="NgayDangBaiHat"><?php echo $row['NgaydangBaihat'] ?></textarea></td>
+    <td><input  type="text" name="NgaydangBaihat" cols="40" rows="15" id="NgayDangBaiHat" value="<?php echo $row['NgaydangBaihat'] ?>"/></td>
   </tr>
   <tr>
     <td>Lượt Nghe Bài Hát</td>
-    <td><textarea name="LuotngheBaihat" cols="40" rows="15" id="LuotNgheBaiHat"><?php echo $row['LuotngheBaihat'] ?></textarea></td>
+    <td><input  type="text" name="LuotngheBaihat" cols="40" rows="15" id="LuotNgheBaiHat" value="<?php echo $row['LuotngheBaihat'] ?>" disabled="disabled"/></td>
   </tr>
   <tr>
     <td>Lượt Tải Bài Hát</td>
-    <td><textarea name="LuottaiBaihat" cols="40" rows="15" id="LuotTaiBaiHat"><?php echo $row['LuottaiBaihat'] ?></textarea></td>
+    <td><input  type="text" name="LuottaiBaihat" cols="40" rows="15" id="LuotTaiBaiHat" value="<?php echo $row['LuottaiBaihat'] ?>" disabled="disabled"/></td>
   </tr>
   <tr>
     <td>Link Bài Hát</td>
-    <td><textarea name="LinkBaihat" cols="40" rows="15" id="LinkBaiHat"><?php echo $row['LinkBaihat'] ?></textarea></td>
+    <td><input  type="file" name="LinkBaihat" cols="40" rows="15" id="LinkBaiHat" value="<?php echo $row['LinkBaihat'] ?>"/></td>
   </tr>
   
-  <?php //load lấy mã loại sp gắn vào combobox
-		$sql_1="select idBaihat from baihat";
-		$objstm = $objPdo->query($sql_1);
-		$data_1 = $objstm->fetchAll(PDO::FETCH_ASSOC);
-		
-	?>
+  <?php //load lấy Id Quốc gia gắn vào combobox
+    $sql="select * from baihat";
+    $objStm = $objPdo->query($sql);
+    $data = $objStm->fetchAll(PDO::FETCH_ASSOC);
+    
+  ?>
   <tr>
-    <td>ID BÀI HÁT</td>
-    <td><select name="idBaihat">
+    <td>Tên Bài Hát</td>
+    <td>
+      <select name="IdBaihat">
     <?php // tạo vòng lập lấy giá trị cho combobox
-	foreach($data_1 as $row_1)  
-		{
-	?>
-    <option ><?php echo $row_1['idBaihat']?></option>
+  foreach($data as $row)  
+    {// echo $row['idQuocgia'];
+  ?>
+    <option value="<?php echo $row['idBaihat'] ?>"><?php echo $row['TenBaihat']?></option>
     <?php } ?>
     </select>
     </td>
   </tr>
 
-  <?php //load lấy mã loại sp gắn vào combobox
-    $sql_1="select idCasi from casi";
-    $objstm = $objPdo->query($sql_1);
-    $data_1 = $objstm->fetchAll(PDO::FETCH_ASSOC);
+  <?php //load lấy Id Quốc gia gắn vào combobox
+    $sql="select * from casi";
+    $objStm = $objPdo->query($sql);
+    $data = $objStm->fetchAll(PDO::FETCH_ASSOC);
     
   ?>
   <tr>
-    <td>ID CA SĨ</td>
-    <td><select name="idCasi">
+    <td>Tên Ca sĩ</td>
+    <td>
+      <select name="IdCasi">
     <?php // tạo vòng lập lấy giá trị cho combobox
-  foreach($data_1 as $row_1)  
-    {
+  foreach($data as $row)  
+    {// echo $row['idQuocgia'];
   ?>
-    <option ><?php echo $row_1['idCasi']?></option>
+    <option value="<?php echo $row['idCasi'] ?>"><?php echo $row['HotenCasi']?></option>
     <?php } ?>
     </select>
     </td>
   </tr>
 
-  <?php //load lấy mã loại sp gắn vào combobox
-    $sql_1="select idTheloai from theloai";
-    $objstm = $objPdo->query($sql_1);
-    $data_1 = $objstm->fetchAll(PDO::FETCH_ASSOC);
+  <?php //load lấy Id Quốc gia gắn vào combobox
+    $sql="select * from theloai";
+    $objStm = $objPdo->query($sql);
+    $data = $objStm->fetchAll(PDO::FETCH_ASSOC);
     
   ?>
   <tr>
-    <td>ID THỂ LOẠI</td>
-    <td><select name="idTheloai">
+    <td>Tên Thể Loại</td>
+    <td>
+      <select name="IdTheloai">
     <?php // tạo vòng lập lấy giá trị cho combobox
-  foreach($data_1 as $row_1)  
-    {
+  foreach($data as $row)  
+    {// echo $row['idQuocgia'];
   ?>
-    <option ><?php echo $row_1['idTheloai']?></option>
+    <option value="<?php echo $row['idTheloai'] ?>"><?php echo $row['TenTheloai']?></option>
     <?php } ?>
     </select>
     </td>

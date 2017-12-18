@@ -36,7 +36,7 @@
 	$sql_sql="SELECT count(*) FROM chitietalbum";
 	$result = $objPdo->query($sql_sql);
 	$row = $result->fetch(PDO::FETCH_NUM);
-	$a=ceil($row[0]/5);
+	$a=ceil($row[0]/7);
 	for($b=1;$b<=$a;$b++){
 		echo '<a href="index.php?quanly=quanlychitietalbum&ac=them&trang='.$b.'" style="text-decoration:none;">'.' '. $b .' '.'</a>';	
 	}
@@ -59,8 +59,6 @@
       <tr align="center">
       	
         <td>Id Chi Tiết Album</td>
-        <td>Lượt Nghe Album</td>
-        <td>Ngày Đăng Album</td>
         <td>Id Album</td> 
         <td>Id Chi Tiết Bài hát</td>
         
@@ -70,8 +68,6 @@
       <tr align="center">
       	
         <td><?php echo $rowtk['idchitietAlbum'] ?></td>
-        <td><?php echo $rowtk['LuotngheAlbum'] ?></td>
-        <td><?php echo $rowtk['NgaydangAlbum'] ?></td>
         <td><?php echo $rowtk['idAlbum'] ?></td>
         <td><?php echo $rowtk['idChitietbaihat'] ?></td> 
         
@@ -86,19 +82,17 @@
 	</table>
 	<p style="background:pink;height:20px"></p>
 	<?php } ?>
-    <!------- END CODE TÌM KIẾM --------->
+    <!-- END CODE TÌM KIẾM -->
      <br />
 <p style="width:200px;color:#00F;size:20px;font-style:inherit;float:left"> TRANG HIỆN TẠI LÀ: <?php echo $get_trang?></p>
 <form action="" method="post" style="float:right">
-		Nhập ID Chi Tiết Album:<input type="text" name="timkiem" />
+		Nhập Tên Album:<input type="text" name="timkiem" />
     <input type="submit" name="sub-timkiem" value="Tìm Kiếm Chi Tiết Album" />
 </form>
    
 <table width="100%" border="1">
   <tr class="firstrow" align="center">
     <td>Id Chi Tiết Album</td>
-    <td>Lượt Nghe Album</td>
-    <td>Ngày Đăng Album</td>
     <td>Id Album</td> 
     <td>Id Chi Tiết Bài hát</td>
     <td>Sửa</td>
@@ -111,8 +105,6 @@
   ?>
   <tr align="center">
     <td><?php echo $row['idchitietAlbum'] ?></td>
-    <td><?php echo $row['LuotngheAlbum'] ?></td>
-    <td><?php echo $row['NgaydangAlbum'] ?></td>
     <td><?php echo $row['idAlbum'] ?></td>
     <td><?php echo $row['idChitietbaihat'] ?></td> 
 

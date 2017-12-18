@@ -25,10 +25,10 @@
     {
         $trang1=0;
     }else{
-        $trang1=($get_trang*5)-5;
+        $trang1=($get_trang*25)-25;
     }
     
-    $sql="select * from thanhvien limit $trang1,5"; // trang1 (vị trí thành viên hiện tại) , lấy 5 thành viên
+    $sql="select * from thanhvien limit $trang1,25"; // trang1 (vị trí thành viên hiện tại) , lấy 25 thành viên
     $objStm = $objPdo->query($sql);
     $data = $objStm->fetchAll(PDO::FETCH_ASSOC);
     
@@ -36,7 +36,7 @@
     $sql_sql="SELECT count(*) FROM thanhvien";
     $result = $objPdo->query($sql_sql);
     $row = $result->fetch(PDO::FETCH_NUM);
-    $a=ceil($row[0]/4);
+    $a=ceil($row[0]/25);
     for($b=1;$b<=$a;$b++){
         echo '<a href="index.php?quanly=quanlythanhvien&ac=them&trang='.$b.'" style="text-decoration:none;">'.' '. $b .' '.'</a>'; 
     }
@@ -44,19 +44,19 @@
     // ---------------------------- tìm kiếm sp
     if(isset($_POST['sub-timkiem'])){
     $matk=$_POST['timkiem'];
-    $sql_tk="select * from thanhvien where idThanhvien='$matk'";
+    $sql_tk="select * from thanhvien where HotenThanhvien like '%$matk%'";
     $objStmtk = $objPdo->query($sql_tk);
     $datatk = $objStmtk->fetchAll(PDO::FETCH_ASSOC);
         foreach($datatk as $rowtk)
         { 
-            $m=$rowtk['idThanhvien'];
+            $m=$rowtk['HotenThanhvien'];
             if($matk=='$m'){
-                echo '<script>alert("Không tìm thấy ID Thành viên")</script>';
+                echo '<script>alert("Không tìm thấy Tên Thành viên")</script>';
             }else{
     ?>
     <BR /><hr /><p style="color:#000;background:pink" align="center">THÀNH VIÊN TÌM KIẾM:</p>
     <table width="100%" border="1">
-      <tr align="center">
+      <tr align="center" style="background:#0040FF;color:#CEF6F5">
         
         <td>Id Thành viên</td>
         <td>Username</td>
@@ -67,6 +67,7 @@
         <td>Địa Chỉ Thành viên</td>
         <td>Ngày Sinh Thành viên</td>
         <td>Trạng Thái HĐ</td>
+        <td>Email Thành viên</td>
         
         <td colspan="2">Quản lý</td>
       </tr>
@@ -81,10 +82,11 @@
         <td><?php echo $rowtk['SdtThanhvien'] ?></td>
         <td><?php echo $rowtk['DiachiThanhvien'] ?></td> 
         <td><?php echo $rowtk['NgaysinhThanhvien'] ?></td> 
-        <td><?php echo $rowtk['TrangthaiHD'] ?></td>  
+        <td><?php echo $rowtk['TrangthaiHD'] ?></td>
+        <td><?php echo $rowtk['EmailThanhvien'] ?></td>   
         
-        <td><a href="modules/quanlythanhvien/xuly.php?id=<?php echo $rowtk['idThanhvien'];?>" onclick="return confirm('Bạn có chắc xóa Thành viên <?php echo $rowtk['idThanhvien']?> chứ')"><img src="background/xoa.jpg" style="width:50px;height:50px"/></a></td>
-        
+        <td><a href="index.php?quanly=quanlythanhvien&ac=sua&id=<?php echo $rowtk['idThanhvien'] ?>"><img src="background/edit1.png" style="width:50px;height:50px"/></a></td>
+
       </tr>
       <?php 
             } 
@@ -93,11 +95,11 @@
     </table>
     <p style="background:pink;height:20px"></p>
     <?php } ?>
-    <!------- END CODE TÌM KIẾM --------->
+    <!-- END CODE TÌM KIẾM -->
      <br />
 <p style="width:200px;color:#00F;size:20px;font-style:inherit;float:left"> TRANG HIỆN TẠI LÀ: <?php echo $get_trang?></p>
 <form action="" method="post" style="float:right">
-        Nhập ID Thành viên:<input type="text" name="timkiem" />
+        Nhập Tên Thành viên:<input type="text" name="timkiem" />
     <input type="submit" name="sub-timkiem" value="Tìm Kiếm Thành Viên" />
 </form>
    
@@ -112,7 +114,8 @@
     <td>Địa Chỉ Thành viên</td>
     <td>Ngày Sinh Thành viên</td>
     <td>Trạng Thái Hoạt Động</td>
-    <td>Xoá</td>
+    <td>Email Thành viên</td>
+    <td>Sữa</td>
    
   </tr>
   <?php
@@ -129,9 +132,10 @@
     <td><?php echo $row['DiachiThanhvien'] ?></td>
     <td><?php echo $row['NgaysinhThanhvien'] ?></td>
     <td><?php echo $row['TrangthaiHD'] ?></td>
+    <td><?php echo $row['EmailThanhvien'] ?></td>
 
     
-    <td ><a href="modules/quanlythanhvien/xuly.php?id=<?php echo $row['idThanhvien'];?>" onclick="return confirm('Bạn có chắc xóa Thành viên thứ<?php echo $row['idThanhvien']?> chứ')"><img src="background/xoa.jpg" style="width:50px;height:50px"/></a></td>
+    <td><a href="index.php?quanly=quanlythanhvien&ac=sua&id=<?php echo $row['idThanhvien'] ?>"><img src="background/edit1.png" style="width:50px;height:50px"/></a></td>
     
   </tr>
   <?php 

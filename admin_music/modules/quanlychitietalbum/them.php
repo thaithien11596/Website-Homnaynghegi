@@ -1,26 +1,13 @@
 <script>
 function KT(){
-	idchitieta=document.getElementById('idchitietAlbum').value;
-	luotnghea=document.getElementById('LuotngheAlbum').value;
-  ngaydanga=document.getElementById('NgaydangAlbum').value;
   ida=document.getElementById('idAlbum').value;
   idchitietbh=document.getElementById('idChitietbaihat').value;
 	//ten=hinhanh['name'];
 	//tam=hinhanh['tmp_name'];
 
 	
-	if(idchitieta==''){
-		alert('Bạn chưa nhập Id Chi Tiết Album');
-		return false;
-	}
-	if(luotnghea==''){
-		alert('Bạn chưa nhập Lượt Nghe Album');
-		return false;
-	}
-	if(ngaydanga==''){
-		alert('Bạn chưa nhập Ngày Đăng Album');
-		return false;
-	}if(ida==''){
+	
+	if(ida==''){
     alert('Bạn chưa nhập Id Album');
     return false;}
 	if(idchitietbh==''){
@@ -36,52 +23,39 @@ function KT(){
   <tr>
     <td colspan="2"><div align="center" style="color:#CEF6F5; background:#0040FF">THÊM CHI TIẾT ALBUM</div></td>
   </tr>
-  <tr>
-    <td width="48%">ID CHI TIẾT ALBUM</td>
-    <td width="52%"><input type="text" name="idchitietAlbum" id="IdchitietAlbum"></td>
-  </tr>
-  <tr>
-    <td>LƯỢT NGHE ALBUM</td>
-    <td><input type="text" name="LuotngheAlbum" id="LuotNgheAlbum"></td>
-  </tr>
-  <tr>
-    <td>NGÀY ĐĂNG ALBUM</td>
-    <td><input type="text" name="NgaydangAlbum" id="NgayDangAlbum"></td>
-  </tr>
- 
-   <?php //load lấy IdAlbum gắn vào combobox
-    $sql_1="select idAlbum from album";
-    $objstm = $objPdo->query($sql_1);
-    $data_1 = $objstm->fetchAll(PDO::FETCH_ASSOC);
+  <?php //load lấy IdAlbum gắn vào combobox
+    $sql="select * from album ";
+    $objstm = $objPdo->query($sql);
+    $data = $objstm->fetchAll(PDO::FETCH_ASSOC);
     
   ?>
   <tr>
-    <td>ID ALBUM</td>
-    <td><select name="idAlbum">
+    <td>TÊN ALBUM</td>
+    <td><select name="IdAlbum">
     <?php // tạo vòng lập lấy giá trị cho combobox
-  foreach($data_1 as $row_1)  
+  foreach($data as $row)  
     {
   ?>
-    <option ><?php echo $row_1['idAlbum']?></option>
+    <option value="<?php echo $row['idAlbum'] ?>" ><?php echo $row['TenAlbum']?></option>
     <?php } ?>
     </select>
     </td>
   </tr>
 
   <?php //load lấy IdChitietBaihat gắn vào combobox
-    $sql_1="select idChitietbaihat from chitietbaihat";
-    $objstm = $objPdo->query($sql_1);
-    $data_1 = $objstm->fetchAll(PDO::FETCH_ASSOC);
+    $sql="SELECT * FROM chitietbaihat JOIN baihat ON chitietbaihat.idBaihat=baihat.idBaihat";
+    $objstm = $objPdo->query($sql);
+    $data2 = $objstm->fetchAll(PDO::FETCH_ASSOC);
     
   ?>
   <tr>
-    <td>ID CHI TIẾT BÀI HÁT</td>
-    <td><select name="idChitietbaihat">
+    <td>TÊN BÀI HÁT</td>
+    <td><select name="IdChitietbaihat">
     <?php // tạo vòng lập lấy giá trị cho combobox
-  foreach($data_1 as $row_1)  
+  foreach($data2 as $row)  
     {
   ?>
-    <option ><?php echo $row_1['idChitietbaihat']?></option>
+    <option value="<?php echo $row['idChitietbaihat'] ?>"><?php echo $row ['TenBaihat']?></option>
     <?php } ?>
     </select>
     </td>

@@ -3,6 +3,27 @@
   padding: 0;
 }
 
+
+
+.morecontent a{
+    text-decoration: none;
+    color: #da2323;
+}
+.morecontent a:hover{
+    text-decoration: none;
+    color: white;
+}
+.nhacvietmoi a:hover {
+    color: gray;
+}
+.back-to-top {
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display:none;
+}
+
 .col-md-4.error {
     right: 15px;
     background: linear-gradient(#a71111,#7b0909);
@@ -22,6 +43,8 @@ body {
     background-image: url('../img/123.jpg');
      background-repeat: no-repeat;
     background-attachment: fixed;
+/*     background-size: cover;
+    background-position: center; */
 }
 
 
@@ -91,7 +114,7 @@ a.list-group-item.list-group-item-action.lstbxh {
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 9999999;
+    z-index: 999;
 }
 
 a.list-group-item.list-group-item-action {height: 55px;}
@@ -123,7 +146,7 @@ form.form-horizontal {
 }
 
 li.upload.disabled {
-    left: 232px;
+    left: 163px;
 }
 
 .col-sm-12 h4 {
@@ -159,7 +182,6 @@ h4.tencasi {
 .tencasi a {
     margin-bottom: -11px;
 }
-
 h4.tencasi {
     padding: 0px;
     margin: 0px;
@@ -339,6 +361,7 @@ div#carousel-example-generic {
 .col-sm-3.col-xs-3.noidungnoibat {
     padding-left: 0px;
     left: 15px;
+    z-index: 999;
 }
 
 .col-sm-8.colbhnoibat {
@@ -404,8 +427,7 @@ span.glyphicon.glyphicon-menu-right.menuright {
     font-size: 20px;
     padding: 3px;
     border-radius: 50%;
-    border: 2px solid white;
-    box-shadow: 0px 0px 2px 0px;
+    border: 2px solid #1f1616;
 }
 
 .baihatnb {
@@ -444,8 +466,8 @@ span.glyphicon.glyphicon-menu-right.menuright {
 
 .fade1 {
     background: #3330309e;
-    width: 100%;
-    height: 91%;
+    width: 180px;
+    height: 180px;
     position: absolute;
     z-index: 1;
     transition: 0.6s;
@@ -470,7 +492,7 @@ span.glyphicon.glyphicon-play.iconplay {
     border: 2px solid white;
     border-radius: 50%;
     opacity: 0;
-    transition: 0.6s;
+    transition: 0.4s;
     transform: scale(0.1);
 }
 
@@ -520,7 +542,7 @@ span.glyphicon.glyphicon-play.iconplay {
 
 .col-sm-4.noidungtrai1{
     width: 354px;
-    height: 358px;
+    height: 354px;
     left: 18px;
     padding: 0;
     border: 1px solid black;
@@ -658,6 +680,18 @@ nav.navbar.navbar-inverse.navbar1 {
     }
 } 
 @media (min-width: 992px) and (max-width: 1200px){
+    .fade1 {
+        background: #3330309e;
+        width: 145px;
+        height: 146px;
+        position: absolute;
+        z-index: 1;
+        transition: 0.6s;
+        top: 0px;
+        opacity: 0;
+        color: #dad5d5;
+        font-size: 13px;
+    }
     ul.nav.navbar-nav.menutop2 li a {
         padding: 15px 21px;
     }
@@ -680,7 +714,7 @@ nav.navbar.navbar-inverse.navbar1 {
         width: 1050px;
     }
     li.upload.disabled {
-        left: 98px;
+        left: 95px;
     }
 
     .col-sm-4.noidungtrai1 {
@@ -690,7 +724,7 @@ nav.navbar.navbar-inverse.navbar1 {
         padding: 0px;
     }
     .noidungtrai1 img {
-        height: 286px;
+        height: 95px;
         width: 53px;
     }
     .col-sm-4.col-xs-12.noidungtrai2 {
@@ -707,11 +741,11 @@ nav.navbar.navbar-inverse.navbar1 {
     }
 }
 @media(max-width: 992px){
+    li.upload.disabled {
+    left: 44px;
+}
     ul.nav.navbar-nav.menutop2 li a {
         padding: 15px 10px;
-    }
-    .menutop2 a span {
-        margin-left: 48px;
     }
     ul.nav.navbar-nav.navbar-right.dangnhap li.li2 {
         margin-right: 60px;
@@ -734,8 +768,8 @@ nav.navbar.navbar-inverse.navbar1 {
     }
     .fade1 {
         background: #3330309e;
-        width: 100%;
-        height: 85%;
+        width: 108px;
+        height: 109px;
         position: absolute;
         z-index: 1;
         transition: 0.6s;
@@ -778,13 +812,13 @@ nav.navbar.navbar-inverse.navbar1 {
         height: 36.5px;
     }
     .col-sm-4.noidungtrai1 {
-        width: 247px;
+        width: 215px;
         height: 235px;
         left: 22px;
         padding: 0px;
     }
     .noidungtrai1 img {
-         height: 235px;
+         height: 78px;
     }
     .col9nhacvietmoi ul li a {
         color: #d6d6d6;
@@ -829,11 +863,10 @@ nav.navbar.navbar-inverse.navbar1 {
 
     .col6nhacvietmoileft, .col6nhacvietmoiright {
 
-        width: 175px;
+width: 175px;
 
-        height: 265px;
-
-    }
+height: 265px;
+}
     .col-sm-3.col3nhacvietmoiright, .col3nhacvietmoileft {
         padding: 0px;
         left: 0px;
@@ -843,7 +876,7 @@ nav.navbar.navbar-inverse.navbar1 {
     }   
      .fade1 {
         background: #3330309e;
-        width: 100%;
+        width: 91%;
         height: 90%;
         position: absolute;
         z-index: 1;
@@ -876,20 +909,20 @@ nav.navbar.navbar-inverse.navbar1 {
     .baihatnb {
         margin-top: 20px;
         margin-bottom: 0px;
-        font-size: 22px;
+        font-size: 20px;
         font-family: initial;
     }
     .noidungbh h4.card-title {
         text-align: center;
         margin-top: 2px;
-        font-size: 13px;
+        font-size: 9px;
         color: #d6d6d6;
         margin-bottom: 0px;
     }
     .fade1 {
     background: #3330309e;
-    width: 100%;
-    height: 87%;
+    width: 88%;
+    height: 88%;
     position: absolute;
     z-index: 1;
     transition: 0.6s;

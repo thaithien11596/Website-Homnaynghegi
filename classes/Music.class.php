@@ -1,7 +1,74 @@
 <?php
 class Music extends Db{
+		public function randAlbum(){
+		$sql = "SELECT * FROM album ORDER BY RAND() LIMIT 8";
+		return $this->select($sql);	
+
+	}
+
+	public function album($idAlbum){
+		$sql = "SELECT * FROM chitietalbum JOIN album ON chitietalbum.idAlbum=album.idAlbum JOIN chitietbaihat ON chitietalbum.idChitietbaihat=chitietbaihat.idChitietbaihat JOIN baihat ON chitietbaihat.idBaihat=baihat.idBaihat WHERE chitietalbum.idAlbum=$idAlbum";
+		return $this->select($sql);	
+
+	}
+	public function detailNhacsi($idNhacsi){
+		$sql = "SELECT * From nhacsi WHERE idNhacsi = $idNhacsi";
+		return $this->select($sql);	
+
+	}
+	public function detailsingNhacsi($idNhacsi){
+		$sql = "SELECT * From nhacsi JOIN baihat ON nhacsi.idNhacsi=baihat.idNhacsi JOIN chitietbaihat ON baihat.idBaihat=chitietbaihat.idBaihat WHERE nhacsi.idNhacsi=$idNhacsi";
+		return $this->select($sql);	
+
+	}
+
+	public function menuAlbum($idQg){
+		$sql = "SELECT * FROM album WHERE idQuocgia=$idQg";
+		return $this->select($sql);	
+
+	}
+
+	public function commentSing($idBh){
+		$sql = "SELECT * FROM binhluan WHERE binhluan.idChitietbaihat = $idBh";
+		return $this->select($sql);	
+
+	}
+	public function searchSing($idSearch){
+		$sql = "SELECT * FROM baihat JOIN chitietbaihat join casi ON baihat.idBaihat=chitietbaihat.idBaihat AND chitietbaihat.idCasi = casi.idCasi WHERE TenBaihat LIKE N'%$idSearch%' order by LuotngheBaihat DESC";
+		return $this->select($sql);
+	}
+	public function detailsingSinger($idSinger){
+		$sql = "SELECT * From chitietbaihat JOIN baihat ON chitietbaihat.idBaihat = baihat.idBaihat WHERE idCasi = $idSinger";
+		return $this->select($sql);	
+
+	}
+	public function detailSinger($idSinger){
+		$sql = "SELECT * FROM casi WHERE idCasi = $idSinger";
+		return $this->select($sql);	
+
+	}
 	public function upsingNumber($singNumber, $idSing){
 		$sql = "UPDATE chitietbaihat SET LuotngheBaihat = $singNumber WHERE idChitietbaihat = $idSing ";
+		return $this->select($sql);	
+
+	}
+		public function uppass($password, $username){
+		$sql = "UPDATE thanhvien SET password = '$password' WHERE username = '$username' ";
+		return $this->select($sql);	
+
+	}
+		public function upsingAlbum($singNumber, $idSing){
+		$sql = "UPDATE album SET LuotngheAlbum = $singNumber WHERE idAlbum = $idSing";
+		return $this->select($sql);	
+
+	}
+	public function updatepassUser($pass, $user){
+		$sql = "UPDATE thanhvien SET password = '$pass' WHERE thanhvien.username = '$user' ";
+		return $this->select($sql);	
+
+	}
+	public function updownNumber($downNumber,$idSing){
+		$sql = "UPDATE chitietbaihat SET LuottaiBaihat = $downNumber WHERE idChitietbaihat = $idSing ";
 		return $this->select($sql);	
 
 	}
@@ -13,7 +80,10 @@ class Music extends Db{
 							chitietbaihat.imageBaihat,
 							chitietbaihat.LuotngheBaihat,
 							chitietbaihat.idChitietbaihat,
-							chitietbaihat.LinkBaihat
+							chitietbaihat.LinkBaihat,
+                            chitietbaihat.LuottaiBaihat,
+							casi.idCasi,
+							casi.idQuocgia
 							FROM
 							baihat
 							INNER JOIN chitietbaihat ON chitietbaihat.idBaihat = baihat.idBaihat
@@ -22,203 +92,99 @@ class Music extends Db{
 							chitietbaihat.idChitietbaihat = $idBh";
 		return $this->select($sql);	
 	}
-	public function getsingerVN($sl)
+	public function randSinger($idQg)
 	{
-		$sql="SELECT
-				casi.HotenCasi,
-				casi.imageCasi,
-				casi.idQuocgia,
-				chitietbaihat.idChitietbaihat,
-				chitietbaihat.idBaihat,
-				chitietbaihat.idCasi,
-				chitietbaihat.idTheloai,
-				baihat.TenBaihat,
-				baihat.LoiBaihat,
-				baihat.idQuocgia,
-				chitietbaihat.LinkBaihat,
-				chitietbaihat.imageBaihat,
-				casi.idCasi,
-				baihat.idBaihat,
-				casi.TieusuCasi
-				FROM
-				casi
-				INNER JOIN chitietbaihat ON chitietbaihat.idCasi = casi.idCasi
-				INNER JOIN baihat ON chitietbaihat.idBaihat = baihat.idBaihat
-				WHERE
-				casi.idQuocgia = 1
-						LIMIT $sl,12";
+		$sql="SELECT * FROM casi where idQuocgia = $idQg ORDER BY RAND() LIMIT 4";
 		return $this->select($sql);	
 	}
-	public function demgetsingerVN()
+	public function randNhacsi($idQg)
 	{
-		$sql="SELECT
-				casi.HotenCasi,
-				casi.imageCasi,
-				casi.idQuocgia,
-				chitietbaihat.idChitietbaihat,
-				chitietbaihat.idBaihat,
-				chitietbaihat.idCasi,
-				chitietbaihat.idTheloai,
-				baihat.TenBaihat,
-				baihat.LoiBaihat,
-				baihat.idQuocgia,
-				chitietbaihat.LinkBaihat,
-				chitietbaihat.imageBaihat
-				FROM
-				casi
-				INNER JOIN chitietbaihat ON chitietbaihat.idCasi = casi.idCasi
-				INNER JOIN baihat ON chitietbaihat.idBaihat = baihat.idBaihat
-				WHERE
-				casi.idQuocgia = 1";
+		$sql="SELECT * FROM nhacsi where idQuocgia = $idQg ORDER BY RAND() LIMIT 4";
 		return $this->select($sql);	
 	}
-
-	public function getsongUSUK($sl)
+	public function getsinger($sl,$idQg)
 	{
-		$sql="SELECT
-					baihat.idBaihat,
-					chitietbaihat.idChitietbaihat,
-					chitietbaihat.imageBaihat,
-					chitietbaihat.LuotngheBaihat,
-					casi.idCasi,
-					casi.HotenCasi,
-					chitietbaihat.LinkBaihat,
-					baihat.TenBaihat,
-					baihat.idQuocgia,
-					casi.idQuocgia
+		$sql="SELECT * FROM casi where idQuocgia = $idQg LIMIT $sl,12";
+		return $this->select($sql);	
+	}
+	public function demgetsinger($idQg)
+	{
+		$sql="SELECT * FROM quocgia JOIN casi ON quocgia.idQuocgia=casi.idQuocgia WHERE quocgia.idQuocgia=$idQg";
+		return $this->select($sql);	
+	}
+	public function demgetNhacsi($idQg)
+	{
+		$sql="SELECT * FROM quocgia JOIN nhacsi ON quocgia.idQuocgia=nhacsi.idQuocgia WHERE quocgia.idQuocgia=$idQg";
+					
+		return $this->select($sql);	
+	}
+	public function getNhacsi($sl,$idQg)
+	{
+		$sql="SELECT * FROM nhacsi where idQuocgia = $idQg LIMIT $sl,12";
+		return $this->select($sql);	
+	}
+	public function demgetsong($idQg,$idTl)
+	{
+		$sql="SELECT *
 					FROM
 					baihat
 					INNER JOIN chitietbaihat ON chitietbaihat.idBaihat = baihat.idBaihat
 					INNER JOIN casi ON chitietbaihat.idCasi = casi.idCasi
+                    INNER JOIN theloai ON theloai.idTheloai = chitietbaihat.idTheloai
 					WHERE
-					baihat.idQuocgia = 2
-					ORDER BY
-					chitietbaihat.LuotngheBaihat DESC
-					LIMIT $sl, 12";
-		return $this->select($sql);	
-	}
-	public function demgetsongUSUK()
-	{
-		$sql="SELECT
-					baihat.idBaihat,
-					chitietbaihat.idChitietbaihat,
-					chitietbaihat.imageBaihat,
-					chitietbaihat.LuotngheBaihat,
-					casi.idCasi,
-					casi.HotenCasi,
-					chitietbaihat.LinkBaihat,
-					baihat.TenBaihat,
-					baihat.idQuocgia,
-					casi.idQuocgia
-					FROM
-					baihat
-					INNER JOIN chitietbaihat ON chitietbaihat.idBaihat = baihat.idBaihat
-					INNER JOIN casi ON chitietbaihat.idCasi = casi.idCasi
-					WHERE
-					baihat.idQuocgia = 2
+					baihat.idQuocgia = $idQg AND theloai.idTheloai = $idTl
 					ORDER BY
 					chitietbaihat.LuotngheBaihat DESC";
+					
 		return $this->select($sql);	
 	}
-	public function getsongVN($sl)
+	public function getsong($sl,$idQg,$idTl)
 	{
 
-		$sql="SELECT
-						baihat.idBaihat,
-						chitietbaihat.idChitietbaihat,
-						chitietbaihat.imageBaihat,
-						chitietbaihat.LuotngheBaihat,
-						casi.idCasi,
-						casi.HotenCasi,
-						chitietbaihat.LinkBaihat,
-						baihat.TenBaihat,
-						baihat.idQuocgia,
-						casi.idQuocgia
-						FROM
-						baihat
+		$sql="SELECT * 
+						FROM baihat
 						INNER JOIN chitietbaihat ON chitietbaihat.idBaihat = baihat.idBaihat
+						INNER JOIN quocgia ON quocgia.idQuocgia = baihat.idQuocgia
 						INNER JOIN casi ON chitietbaihat.idCasi = casi.idCasi
+                        INNER JOIN theloai ON chitietbaihat.idTheloai = theloai.idTheloai
 						WHERE
-						baihat.idQuocgia = 1
+						baihat.idQuocgia = $idQg AND theloai.idTheloai = $idTl
 						ORDER BY
 						chitietbaihat.LuotngheBaihat DESC
 						LIMIT $sl, 12";
+						
+						
 		return $this->select($sql);	
 	}
 
-	public function demgetsongVN()
+	public function getsongnew($sl,$idQg,$idTl )
 	{
 
-		$sql="SELECT
-						baihat.idBaihat,
-						chitietbaihat.idChitietbaihat,
-						chitietbaihat.imageBaihat,
-						chitietbaihat.LuotngheBaihat,
-						casi.idCasi,
-						casi.HotenCasi,
-						chitietbaihat.LinkBaihat,
-						baihat.TenBaihat,
-						baihat.idQuocgia,
-						casi.idQuocgia
-						FROM
-						baihat
-						INNER JOIN chitietbaihat ON chitietbaihat.idBaihat = baihat.idBaihat
-						INNER JOIN casi ON chitietbaihat.idCasi = casi.idCasi
-						WHERE
-						baihat.idQuocgia = 1
-						ORDER BY
-						chitietbaihat.LuotngheBaihat DESC
-						";
-		return $this->select($sql);	
-	}
-
-	public function getsongnewVN($sl)
-	{
-
-		$sql="SELECT
-					baihat.idBaihat,
-					chitietbaihat.idChitietbaihat,
-					chitietbaihat.imageBaihat,
-					chitietbaihat.LuotngheBaihat,
-					casi.idCasi,
-					casi.HotenCasi,
-					chitietbaihat.LinkBaihat,
-					baihat.TenBaihat,
-					baihat.idQuocgia,
-					casi.idQuocgia,
-					chitietbaihat.NgaydangBaihat
+		$sql="SELECT *
 					FROM
 					baihat
 					INNER JOIN chitietbaihat ON chitietbaihat.idBaihat = baihat.idBaihat
 					INNER JOIN casi ON chitietbaihat.idCasi = casi.idCasi
+                    INNER JOIN theloai ON chitietbaihat.idTheloai=theloai.idTheloai
 					WHERE
-					baihat.idQuocgia = 1
+					baihat.idQuocgia = $idQg AND theloai.idTheloai = $idTl
 					ORDER BY
 					chitietbaihat.NgaydangBaihat DESC
 					LIMIT $sl, 12";
 		return $this->select($sql);	
 	}
-	public function demgetsongnewVN()
+	public function demgetsongnew($idQg,$idTl)
 	{
 
 		$sql="SELECT
-					baihat.idBaihat,
-					chitietbaihat.idChitietbaihat,
-					chitietbaihat.imageBaihat,
-					chitietbaihat.LuotngheBaihat,
-					casi.idCasi,
-					casi.HotenCasi,
-					chitietbaihat.LinkBaihat,
-					baihat.TenBaihat,
-					baihat.idQuocgia,
-					casi.idQuocgia,
-					chitietbaihat.NgaydangBaihat
+					*
 					FROM
 					baihat
 					INNER JOIN chitietbaihat ON chitietbaihat.idBaihat = baihat.idBaihat
 					INNER JOIN casi ON chitietbaihat.idCasi = casi.idCasi
+					INNER JOIN theloai ON chitietbaihat.idTheloai = theloai.idTheloai
 					WHERE
-					baihat.idQuocgia = 1";
+					baihat.idQuocgia = $idQg AND theloai.idTheloai = $idTl";
 		return $this->select($sql);	
 	}
 	public function processLogin($username,$password)
@@ -234,71 +200,22 @@ class Music extends Db{
 						// echo $sql;
 		return $this->select($sql);	
 	}
-	public function indexVNMusic()
+	public function processfixPassword($username,$email)
 	{
 		$sql="SELECT
-			chitietbaihat.idChitietbaihat,
-			chitietbaihat.imageBaihat,
-			chitietbaihat.LuotngheBaihat,
-			casi.HotenCasi,
-			chitietbaihat.LinkBaihat,
-			baihat.TenBaihat,
-			quocgia.idQuocgia
-			FROM
-			baihat
-			INNER JOIN chitietbaihat ON chitietbaihat.idBaihat = baihat.idBaihat
-			INNER JOIN casi ON chitietbaihat.idCasi = casi.idCasi
-			INNER JOIN quocgia ON baihat.idQuocgia = quocgia.idQuocgia AND casi.idQuocgia = quocgia.idQuocgia
-			WHERE
-			quocgia.idQuocgia = 1
-			ORDER BY
-			chitietbaihat.LuotngheBaihat DESC
-			LIMIT 8";
-						// echo $sql;
-		return $this->select($sql);	
-	}
-		public function indexbxhVN()
-	{
-			$sql="SELECT
-						baihat.TenBaihat,
-						baihat.idBaihat,
-						chitietbaihat.idChitietbaihat,
-						chitietbaihat.imageBaihat,
-						chitietbaihat.LuottaiBaihat,
-						baihat.idQuocgia
+						thanhvien.username,
+						thanhvien.password
 						FROM
-						baihat
-						INNER JOIN chitietbaihat ON chitietbaihat.idBaihat = baihat.idBaihat
+						thanhvien
 						WHERE
-						baihat.idQuocgia = 1
-						ORDER BY
-						chitietbaihat.LuottaiBaihat DESC
-						LIMIT 7";
-		return $this->select($sql);	
-	}
-	public function indexRandMusic()
-	{
-		$sql="SELECT
-							baihat.idBaihat,
-							baihat.TenBaihat,
-							chitietbaihat.idChitietbaihat,
-							casi.idCasi,
-							casi.HotenCasi,
-							chitietbaihat.imageBaihat,
-							chitietbaihat.NgaydangBaihat,
-							chitietbaihat.LuotngheBaihat,
-							chitietbaihat.LuottaiBaihat,
-							baihat.idQuocgia
-							FROM
-							casi
-							INNER JOIN chitietbaihat ON chitietbaihat.idCasi = casi.idCasi
-							INNER JOIN baihat ON chitietbaihat.idBaihat = baihat.idBaihat
-							ORDER BY RAND()
-							LIMIT 8";
+						thanhvien.username = '$username' AND
+						thanhvien.EmailThanhvien = '$email' ";
 						// echo $sql;
 		return $this->select($sql);	
 	}
-		public function indexbxhUSUK()
+	
+	
+	public function bxhGe($idQg)
 		{
 					$sql="SELECT
 							baihat.idBaihat,
@@ -317,50 +234,26 @@ class Music extends Db{
 							INNER JOIN casi ON chitietbaihat.idCasi = casi.idCasi
 							INNER JOIN quocgia ON baihat.idQuocgia = quocgia.idQuocgia AND casi.idQuocgia = quocgia.idQuocgia
 							WHERE
-							quocgia.idQuocgia = 2
+							quocgia.idQuocgia = $idQg
+							ORDER BY
+								chitietbaihat.LuottaiBaihat DESC
 							LIMIT 7";
 						// echo $sql;
 		return $this->select($sql);	
 	}
-	public function indexbhNew()
+
+	public function bxh($idQg)
 		{
-					$sql="SELECT
-								chitietbaihat.NgaydangBaihat,
-								baihat.TenBaihat,
-								casi.HotenCasi,
-								chitietbaihat.imageBaihat,
-								chitietbaihat.idChitietbaihat,
-								casi.idQuocgia,
-								baihat.idQuocgia
-								FROM
-								chitietbaihat
-								INNER JOIN baihat ON chitietbaihat.idBaihat = baihat.idBaihat
-								INNER JOIN casi ON chitietbaihat.idCasi = casi.idCasi
-								WHERE
-								chitietbaihat.idTheloai = 1
-								ORDER BY
-								chitietbaihat.NgaydangBaihat DESC
-								LIMIT 12";
-						// echo $sql;
-		return $this->select($sql);	
-	}
-	public function bxhVN()
-		{
-					$sql="SELECT
-							baihat.TenBaihat,
-							baihat.idBaihat,
-							chitietbaihat.idChitietbaihat,
-							chitietbaihat.imageBaihat,
-							chitietbaihat.LuottaiBaihat,
-							casi.HotenCasi,
-							chitietbaihat.LuotngheBaihat,
-							baihat.idQuocgia
+					$sql="SELECT *
 							FROM
 							baihat
 							INNER JOIN chitietbaihat ON chitietbaihat.idBaihat = baihat.idBaihat
-							INNER JOIN casi ON chitietbaihat.idCasi = casi.idCasi
+							INNER JOIN casi ON casi.idCasi = chitietbaihat.idCasi
+                            INNER JOIN quocgia ON quocgia.idQuocgia = baihat.idQuocgia
+                            INNER JOIN theloai ON theloai.idTheloai = chitietbaihat.idTheloai
+                            
 							WHERE
-							baihat.idQuocgia = 1
+							baihat.idQuocgia = $idQg
 							ORDER BY
 							chitietbaihat.LuottaiBaihat DESC
 							LIMIT 20";
@@ -376,7 +269,10 @@ class Music extends Db{
 								chitietbaihat.imageBaihat,
 								chitietbaihat.LuottaiBaihat,
 								casi.HotenCasi,
-								chitietbaihat.LuotngheBaihat
+								chitietbaihat.LuotngheBaihat,
+								chitietbaihat.idCasi,
+								casi.idQuocgia
+
 								FROM
 								baihat
 								INNER JOIN chitietbaihat ON chitietbaihat.idBaihat = baihat.idBaihat

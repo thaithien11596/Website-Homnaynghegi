@@ -3,7 +3,7 @@
 	$error = "";
 	if(isset($_POST['signin'])){
 		if(empty($_POST['username']) || empty($_POST['password'])){
-			$error = "Tài khoản hoặc mật khẫu không đươc để trống";
+			$error = "Tài khoản hoặc mật khẩu không đươc để trống";
 			// header('Location:signin-form.php');
 		}
 		else {
@@ -15,7 +15,7 @@
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 		$music=new Music();
-		$data=$music->processLogin($username,$password);
+		$data=$music->processLogin($username,md5($password));
 		
 		// echo $result= count($data);
 			// print_r($data);

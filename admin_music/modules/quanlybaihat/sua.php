@@ -54,43 +54,44 @@ function kt(){
     <td><input type="text" name="TenBaihat" value="<?php echo $row['TenBaihat'] ?>" id='TenBaiHat'/></td>
   </tr>
   <tr>
-    <td>LỜI BÀI HÁT</td>
+  <td>LỜI BÀI HÁT</td>
     <td><textarea name="LoiBaihat" cols="40" rows="15" id="LoiBaiHat"><?php echo $row['LoiBaihat'] ?></textarea></td>
   </tr>
   
   <?php //load lấy mã loại sp gắn vào combobox
-		$sql_1="select idNhacsi from nhacsi";
-		$objstm = $objPdo->query($sql_1);
-		$data_1 = $objstm->fetchAll(PDO::FETCH_ASSOC);
-		
-	?>
+    $sql="select * from nhacsi";
+    $objStm = $objPdo->query($sql);
+    $data = $objStm->fetchAll(PDO::FETCH_ASSOC);
+    
+  ?>
   <tr>
-    <td>ID NHẠC SĨ</td>
-    <td><select name="idNhacsi">
+    <td>Tên Nhạc Sĩ</td>
+    <td><select name="IdNhacsi">
     <?php // tạo vòng lập lấy giá trị cho combobox
-	foreach($data_1 as $row_1)  
-		{
-	?>
-    <option ><?php echo $row_1['idNhacsi']?></option>
+  foreach($data as $row)  
+    {
+  ?>
+    <option value="<?php echo $row['idNhacsi'] ?>"><?php echo $row['HotenNhacsi']?></option>
     <?php } ?>
     </select>
     </td>
   </tr>
-
-  <?php //load lấy mã loại sp gắn vào combobox
-    $sql_1="select idQuocgia from quocgia";
-    $objstm = $objPdo->query($sql_1);
-    $data_1 = $objstm->fetchAll(PDO::FETCH_ASSOC);
+  
+ <?php //load lấy Id Quốc Gia gắn vào combobox
+    $sql="select * from quocgia";
+    $objStm = $objPdo->query($sql);
+    $data = $objStm->fetchAll(PDO::FETCH_ASSOC);
     
   ?>
   <tr>
-    <td>ID QUỐC GIA</td>
-    <td><select name="idQuocgia">
+    <td>Tên Quốc Gia</td>
+    <td>
+      <select name="IdQuocgia">
     <?php // tạo vòng lập lấy giá trị cho combobox
-  foreach($data_1 as $row_1)  
+  foreach($data as $row)  
     {
   ?>
-    <option ><?php echo $row_1['idQuocgia']?></option>
+    <option value="<?php echo $row['idQuocgia'] ?>"><?php echo $row['TenQuocgia']?></option>
     <?php } ?>
     </select>
     </td>

@@ -25,10 +25,10 @@
 	{
 		$trang1=0;
 	}else{
-		$trang1=($get_trang*6)-6;
+		$trang1=($get_trang*15)-15;
 	}
 	
-	$sql="select * from chitietbaihat limit $trang1,6"; // trang1 (vị trí chi tiết bài hát hiện tại) , lấy 6 chi tiết bài hát
+	$sql="select * from chitietbaihat limit $trang1,15"; // trang1 (vị trí chi tiết bài hát hiện tại) , lấy 15 chi tiết bài hát
 	$objStm = $objPdo->query($sql);
 	$data = $objStm->fetchAll(PDO::FETCH_ASSOC);
 	
@@ -36,7 +36,7 @@
 	$sql_sql="SELECT count(*) FROM chitietbaihat";
 	$result = $objPdo->query($sql_sql);
 	$row = $result->fetch(PDO::FETCH_NUM);
-	$a=ceil($row[0]/7);
+	$a=ceil($row[0]/15);
 	for($b=1;$b<=$a;$b++){
 		echo '<a href="index.php?quanly=quanlychitietbaihat&ac=them&trang='.$b.'" style="text-decoration:none;">'.' '. $b .' '.'</a>';	
 	}
@@ -74,11 +74,11 @@
       <tr align="center">
       	
         <td><?php echo $rowtk['idChitietbaihat'] ?></td>
-        <td><?php echo $rowtk['imageBaihat'] ?></td>
+        <td><img src="../img/<?php echo $rowtk['imageBaihat'] ?>"/></td>
         <td><?php echo $rowtk['NgaydangBaihat'] ?></td>
         <td><?php echo $rowtk['LuotngheBaihat'] ?></td>
         <td><?php echo $rowtk['LuottaiBaihat'] ?></td>
-        <td><?php echo $rowtk['LinkBaihat'] ?></td>
+        <td><a href="../admin_music/audio/<?php echo $rowtk['LinkBaihat'] ?>"><?php echo $row['LinkBaihat'] ?></a></td>
         <td><?php echo $rowtk['idBaihat'] ?></td>
         <td><?php echo $rowtk['idCasi'] ?></td>
         <td><?php echo $rowtk['idTheloai'] ?></td>
@@ -95,7 +95,7 @@
 	</table>
 	<p style="background:pink;height:20px"></p>
 	<?php } ?>
-    <!------- END CODE TÌM KIẾM --------->
+    
      <br />
 <p style="width:200px;color:#00F;size:20px;font-style:inherit;float:left"> TRANG HIỆN TẠI LÀ: <?php echo $get_trang?></p>
 <form action="" method="post" style="float:right">
@@ -125,11 +125,11 @@
   ?>
   <tr align="center">
     <td><?php echo $row['idChitietbaihat'] ?></td>
-    <td><?php echo $row['imageBaihat'] ?></td>
+    <td><img src="../img/<?php echo $row['imageBaihat']?> " style="height: 90px"/></td>
     <td><?php echo $row['NgaydangBaihat'] ?></td>
     <td><?php echo $row['LuotngheBaihat'] ?></td>
     <td><?php echo $row['LuottaiBaihat'] ?></td>
-    <td><?php echo $row['LinkBaihat'] ?></td>
+    <td><a href="../<?php echo $row['LinkBaihat'] ?>"><?php echo $row['LinkBaihat'] ?></a></td>
     <td><?php echo $row['idBaihat'] ?></td>
     <td><?php echo $row['idCasi'] ?></td>
    	<td><?php echo $row['idTheloai'] ?></td>

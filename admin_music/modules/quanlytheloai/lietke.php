@@ -25,10 +25,10 @@
   {
     $trang1=0;
   }else{
-    $trang1=($get_trang*4)-4;
+    $trang1=($get_trang*7)-7;
   }
   
-  $sql="select * from theloai limit $trang1,4"; // trang1 (vị trí thể loại hiện tại) , lấy 4 thể loại
+  $sql="select * from theloai limit $trang1,7"; // trang1 (vị trí thể loại hiện tại) , lấy 7 thể loại
   $objStm = $objPdo->query($sql);
   $data = $objStm->fetchAll(PDO::FETCH_ASSOC);
   
@@ -36,22 +36,22 @@
   $sql_sql="SELECT count(*) FROM theloai";
   $result = $objPdo->query($sql_sql);
   $row = $result->fetch(PDO::FETCH_NUM);
-  $a=ceil($row[0]/4);
+  $a=ceil($row[0]/7);
   for($b=1;$b<=$a;$b++){
     echo '<a href="index.php?quanly=quanlytheloai&ac=them&trang='.$b.'" style="text-decoration:none;">'.' '. $b .' '.'</a>'; 
   }
   echo '<br>'.'TỔNG THỂ LOẠI LÀ: '.$row[0];
   // ---------------------------- tìm kiếm thể loại
   if(isset($_POST['sub-timkiem'])){
-  $matk=$_POST['timkiem'];
-  $sql_tk="select * from theloai where idTheloai='$matk'";
+  $tentk=$_POST['timkiem'];
+  $sql_tk="select * from theloai where TenTheloai like'%$tentk%'";
   $objStmtk = $objPdo->query($sql_tk);
   $datatk = $objStmtk->fetchAll(PDO::FETCH_ASSOC);
         foreach($datatk as $rowtk)
         { 
-      $m=$rowtk['idTheloai'];
-      if($matk=='$m'){
-        echo '<script>alert("Không tìm thấy Id Thể loại")</script>';
+      $m=$rowtk['TenTheloai'];
+      if($tentk=='$m'){
+        echo '<script>alert("Không tìm thấy Tên Thể loại")</script>';
       }else{
   ?>
     <BR /><hr /><p style="color:black; background:pink" align="center">THỂ LOẠI TÌM KIẾM:</p>
@@ -81,12 +81,12 @@
   </table>
   <p style="background:pink;height:40px"></p>
   <?php } ?>
-    <!------- END CODE TÌM KIẾM --------->
+    <!-- END CODE TÌM KIẾM -->
      <br />
 <p style="width:200px;color:blue;size:20px;font-style:inherit;float:left"> TRANG HIỆN TẠI LÀ: <?php echo $get_trang?></p>
 <form action="" method="post" style="float:right">
-    Nhập ID Thể Loại:<input type="text" name="timkiem" />
-    <input type="submit" name="sub-timkiem" value="Tìm Kiếm Thể Loại" />
+    Nhập Tên Thể Loại:<input type="text" name="timkiem" />
+    <input type="submit" name="sub-timkiem" value="Tìm Kiếm" />
 </form>
    
 <table width="100%" border="1">
